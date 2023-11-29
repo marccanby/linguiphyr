@@ -6,7 +6,7 @@ and visualizations.
 
 ## Getting Started
 
-If you have not installed R and R Studio, please follow the instructions at https://posit.co/download/rstudio-desktop/.
+If you have not installed R and RStudio, please follow the instructions at https://posit.co/download/rstudio-desktop/.
 
 **Step 1: Install LinguiphyR**
 
@@ -19,7 +19,7 @@ install.packages("BiocManager")
 BiocManager::install("ggtree")
 
 install.packages("remotes")
-remotes::install_github("marccanby/lingphylo")
+remotes::install_github("marccanby/linguiphyr")
 ```
 
 **Step 2: Install PAUP\***
@@ -53,7 +53,7 @@ which is typically located at `~/.Rprofile` or `~/.Rprofile.site`.
 Once the software is installed, you can run LinguiphyR with the following commands:
 
 ```
-library(lingphylo)
+library(linguiphyr)
 run_app()
 ```
 
@@ -71,3 +71,7 @@ Follow these steps:
 4. Click on the "Analysis" tab. Here, you can visualize the tree found by PAUP\*, annotate internal nodes with reconstructed states, see incompatible characters, and more. We recommend rooting the tree at "HI" ("Hittite"), one of the Anatolian languages, which is the branch believed to break off first.
 
 ![Analysis page of LinguiphyR.\label{fig:example}](paper/figure.png)
+
+## Contact
+
+If you have any questions or suggestions about LinguiPhyR, please send an email to marc.canby@gmail.com!
