@@ -74,4 +74,4 @@ Follow these steps:
 
 ## Contact
 
-If you have any questions or suggestions about LinguiPhyR, please send an email to marc.canby@gmail.com!
+If you have any questions or suggestions about LinguiPhyR, please create an issue, or send an email to marc.canby@gmail.com!
