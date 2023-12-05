@@ -15,6 +15,7 @@ app_server <- function(input, output, session) {
   my_vals <- reactiveValues()
   my_vals$data_is_loaded <- FALSE
   my_vals$paup_finished <- FALSE
+  my_vals$paup_generated <- FALSE
   my_vals$analysis_upload_finished <- FALSE
 
   cache <- reactiveValues()
@@ -28,6 +29,10 @@ app_server <- function(input, output, session) {
   output$paup_finished <- reactive(my_vals$paup_finished)
   outputOptions(output,
                 "paup_finished",
+                suspendWhenHidden = FALSE)
+  output$paup_generated <- reactive(my_vals$paup_generated)
+  outputOptions(output,
+                "paup_generated",
                 suspendWhenHidden = FALSE)
   output$analysis_upload_finished <- reactive(my_vals$analysis_upload_finished)
   outputOptions(output,

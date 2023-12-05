@@ -31,8 +31,16 @@ paup_ui_sidebar <- function(id) {
                                      textInput(ns("paup_keep_score"),
                                                NULL,
                                                428)))),
-
-    fluidRow(column(6, actionButton(ns("paup_run"), "Run PAUP*"))),
+    conditionalPanel("!output.paup_generated",
+                     fluidRow(column(6,
+                                     actionButton(ns("paup_generate_nexus"),
+                                                  "Generate Nexus")))),
+    conditionalPanel("output.paup_generated",
+                     downloadButton(ns("paup_download_nexus"),
+                                    "Download Nexus")),
+    conditionalPanel("!output.paup_finished",
+                     fluidRow(column(6, actionButton(ns("paup_run"),
+                                                     "Run PAUP*")))),
     conditionalPanel("output.paup_finished",
                      downloadButton(ns("paup_download"),
                                     "Download PAUP* Trees"))
@@ -50,7 +58,8 @@ paup_ui <- function(id) {
   fluidPage(
     conditionalPanel("output.paup_finished",
                      wellPanel(h4("PAUP* Output"),
-                               htmlOutput(ns("paup_output"))),
+                               htmlOutput(ns("paup_output")))),
+    conditionalPanel("output.paup_generated",
                      wellPanel(h4("Nexus File (PAUP* Input)"),
                                htmlOutput(ns("paup_input"))))
   )
@@ -72,7 +81,7 @@ paup_server <- function(id,
 
     col_start <- 5
 
-    observeEvent(input$paup_run, {
+    generateNexusString <- function() {
       keep <- NULL
       is_exhaustive <- NULL
       is_weighted <- NULL
@@ -110,11 +119,33 @@ paup_server <- function(id,
                                is_exhaustive,
                                keep,
                                root = root)
+      nexus_str
+    }
+
+    observeEvent(input$paup_generate_nexus, {
+      nexus_str <- generateNexusString()
       if (substr(nexus_str[1], 1, 7) == "ERROR: ") {
         assertthat::assert_that(length(nexus_str) == 1)
         generate_error(substr(nexus_str, 8, nchar(nexus_str[1])))
         return()
       }
+      my_vals$paup_generated <- TRUE
+      paup_input <- gsub("\n", "<br>", nexus_str)
+      paup_input <- gsub("\t", "&emsp;", paup_input)
+      output$paup_input <- renderUI({
+        HTML(paup_input)
+      })
+    })
+
+    observeEvent(input$paup_run, {
+      is_exhaustive <- input$paup_is_exhaustive
+      nexus_str <- generateNexusString()
+      if (substr(nexus_str[1], 1, 7) == "ERROR: ") {
+        assertthat::assert_that(length(nexus_str) == 1)
+        generate_error(substr(nexus_str, 8, nchar(nexus_str[1])))
+        return()
+      }
+      my_vals$paup_generated <- TRUE
 
       # Run PAUP*
       run_paup(nexus_str)
@@ -146,6 +177,20 @@ paup_server <- function(id,
       }
     )
 
+    # Download Nexus file
+    output$paup_download_nexus <- downloadHandler(
+      filename = function() {
+        "paup_nexus.nex"
+      },
+      content = function(file) {
+        nexus_str <- generateNexusString()
+        assertthat::assert_that(substr(nexus_str[1], 1, 7) != "ERROR: ")
+        sink(file)
+        cat(nexus_str)
+        sink()
+      }
+    )
+
 
 
     # Enable/disable whether PAUP can run
@@ -172,6 +217,7 @@ paup_server <- function(id,
     observe({
       q <- my_vals[["data"]]
       my_vals$paup_finished <- FALSE
+      my_vals$paup_generated <- FALSE
       my_vals$analysis_upload_finished <- FALSE
       cache[["cache"]] <- list() # Reset cache
     })
@@ -184,6 +230,7 @@ paup_server <- function(id,
                       input$paup_keep_score),
                  {
                    my_vals$paup_finished <- FALSE
+                   my_vals$paup_generated <- FALSE
                    my_vals$analysis_upload_finished <- FALSE
                    cache[["cache"]] <- list()
                  })
