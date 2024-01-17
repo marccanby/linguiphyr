@@ -26,9 +26,9 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.--->
 
 # Introduction
 
-Phylogenetic methods have become commonplace in historical linguistics research. However, many current 
-research activities in the area are undertaken by statisticians rather than linguists, which is largely 
-(and understandably) due to the highly mathematical and computational nature of the work. This paper aims to bridge the gap 
+Phylogenetic methods have become commonplace in historical linguistics research. However, much of the work is highly 
+technical and not easily accessible to the typical classically-trained historical linguist; this is largely (and understandably) 
+due to the highly mathematical and computational nature of the work. This paper aims to bridge the gap 
 between linguistic and statistical research by introducing LinguiPhyR, an R package that provides a graphical 
 user interface (GUI) to aid in the phylogenetic analysis of linguistic data. As such, very little computational 
 or statistical expertise is required by the user. A linguist may simply upload a dataset, select 
@@ -38,35 +38,34 @@ for tree analysis are provided: a user may examine what characters are responsib
 in the tree, see the characters that are incompatible on the tree, annotate internal nodes of the tree with 
 reconstructed states, and even see a relative chronology of state changes. 
 
-We note that, at present, our software focuses on parsimony-based tree estimation and analyses.
-We make this choice because such an approach is easily interpretable by linguists: the best tree is simply
-the tree that minimizes the number of state changes. Many popular methods for phylogenetic estimation, such as maximum likelihood and 
-Bayesian inference, are less easily interpretable, as they are highly parametric and rely on a likelihood function that may be unrealistic
-or obscure to linguists. Parsimony analyses, on the other hand, make it easy to see the effect of each character in the dataset on
-tree search. Other concerns about fully parametric approaches have been raised as well, such as the suggestion that non-parametric methods like parsimony are more accurate [@barbancondiachronica2013; @tutorialNicholsWarnow; @holmes2003statistics]. 
-Nonetheless, future work will include the incorporation of other search algorithms and analytical methods into LinguiPhyR.
+We note that, at present, our software focuses on parsimony-based tree estimation and analyses. We make this choice because such an 
+approach is easily interpretable: the best tree is simply the tree that minimizes the number of state changes. 
+This makes it easy for linguists to see the effect of each character in the dataset on tree search. However, one limitation 
+of parsimony-based methods is that they are limited to searching for and analyzing tree topology: studies seeking to explore 
+ancestral node dating (glottochronology) or branch lengths are better suited to using likelihood or Bayesian approaches. 
+Future work will include the incorporation of other search algorithms and analytical methods into LinguiPhyR.
 
 # Statement of need
 
 Given the recent explosion of new linguistic phylogenetic datasets [@heggartyetal; @Tresoldi2023; @herce2023short; @jager2018global], new tools for their analyses are called for. Many linguists
 want to perform parsimony analyses of their dataset, and our software makes it easy to do so with little effort.
 In this work,
-we provide an easy-to-use tool for phylogenetic analysis that emphasizes *interpretability*, allowing linguists to understand
+we provide an easy-to-use parsimony-based tool for phylogenetic analysis that emphasizes *interpretability*, allowing linguists to understand
 why trees are returned for a particular dataset *or* what evidence a new dataset has for existing trees suggested by the community.
-<!---Currently,
-the de-facto standard for phylogenetic analysis is Bayesian inference, which, despite efforts to reduce barrier to entry,
-requires reasonable mathematical maturity to understand and operates largely as a black-box.---> 
+Currently, the go-to method for phylogenetic analysis is Bayesian inference, which, despite efforts to reduce barrier 
+to entry, requires reasonable mathematical maturity to understand and operates largely as a black-box. 
 
 The primary goals of LinguiPhyR are to
 
 1. Make phylogenetics accessible to linguists by requiring *no* coding or writing of configuration files. While these are useful skills,
 we believe phylogenetics can only be useful to historical linguistics if considerable analysis is given to the
-results of phylogenetic algorithms by linguists. Over-emphasis on technical ability often hinders this work.
+results of phylogenetic algorithms by linguists. Giving linguists the option to spend their time analyzing trees in a GUI
+rather than writing complicated code will facilitate this work.
 
-2. Make it easy to find and visualize trees for a new linguistic dataset. One simply has to upload the dataset and select optimization criteria (or use the
+3. Make it easy to find and visualize trees for a new linguistic dataset. One simply has to upload the dataset and select optimization criteria (or use the
 default settings). Trees are then displayed in the app and can be downloaded for inclusion in other work.
 
-3. Provide a comprehensive set of (parsimony-based) analysis tools. These focus on the following questions: why are particular trees being suggested for
+4. Provide a comprehensive set of (parsimony-based) analysis tools. These focus on the following questions: why are particular trees being suggested for
 the dataset? What evidence does a dataset contain for other trees proposed by the community? What is the effect of particular coding
 decisions in the dataset on the understanding of a tree?
 <!---5. Provide a platform for phylogenetic visualization. Discussion with many linguists has pointed to the need for an interactive
@@ -109,7 +108,7 @@ Table: Example dataset specification, excerpted from the screened Indo-European 
 <!---, and the columns represent attested languages (the leaves of the tree). --->
 Each row represents a character. The first four columns
 specify special character information: a unique character ID, the character name ("feature"), the weight of the character (optional,
-to be used in parsimony analyses), and the character type (which can be *standard*, *irreversible*, or *custom*). The remaining columns
+to be used in parsimony analyses), and the character type (which can be *standard*, *irreversible*, or *custom*, explained below). The remaining columns
 contain the character states for each attested language (i.e. the leaves of the tree). 
 
 Two languages should be given the same state for a character *if and only if* the languages' realization of that character
@@ -121,7 +120,15 @@ the languages should be given different states for that character.
 
 Such cognate judgements are critically important to the results of phylogenetic estimation. A haphazard or automated
 data representation will not yield meaningful trees; hence, it is important to have well-trained linguists judge relevant material and select characters
-that actually represent potentially shared innovations. An abundance of literature discusses good methodology for doing this [@ringe2002indo; @tutorialNicholsWarnow].
+that actually represent potentially shared innovations. An abundance of phylogenetics literature discusses good methodology for doing this 
+[@ringe2002indo; @tutorialNicholsWarnow, @heggarty2021cognacy]; classical historical linguistics references are also helpful [@ringeska, @campbell2013historical]. 
+Further, our coding scheme is applicable to phonological, morphological, and structural/typological characters, which are abundant in phylogenetic datasets.
+
+Each character may be declared “standard”, “irreversible”, or “custom”. Standard characters permit any change of state 
+(e.g. from 0 to 1 or from 1 to 2) with uniform cost. This is generally appropriate for lexical characters where the states represent 
+cognate classes. Irreversible characters are binary characters that may transition from 0 to 1 but not from 1 to 0. This is appropriate 
+in the case of phonological mergers, which are generally considered irreverisble. Finally, custom characters allow the user to declare which state transitions are 
+allowed, and what the cost should be for each permitted transition. The exact way to specify this is described in the "Data Upload" page of the app.
 
 Our data format also supports *polymorphic* character states: these are instances where a language exhibits more than one state for a character.
 In the context of lexical data, this would mean that a language manifests two cognate classes for the same semantic slot.
@@ -149,7 +156,12 @@ the character is parsimony-informative (among others). The dataset may be sorted
 * **Clade Analysis:** The user may select a subset of languages and analyze what characters provide support for 
 such a clade (a clade is a subset of languages separated from all other languages by an edge in the tree).
 This is computed in the strictest sense: a character only supports a hypothetical clade if the languages
-in the clade all share the same state, and all other languages share a different state.
+in the clade all share the same state, and all other languages share a different state.[^1]
+
+[^1]: It is important to note that a clade *on a particular tree* may be supported by more than just the characters that meet 
+this condition. For example, if the dominant cognate class in a clade is lost by just one language in the clade, the character 
+will still support the grouping if the removal of the edge separating the clade from all other languages would produce a 
+less parsimonious tree. This can be examined in the "Analysis" page of the application.
 
 <!---The first five columns are special columns that provide information about each character; the remaining columns are 
 language states. The five special columns are:
@@ -176,20 +188,26 @@ dataset exhibits for various trees accepted by the community. Strict and majorit
 are displayed as well. The primary analyses that can be performed on a tree are the following:
 
 1. **Tree Score:** Each tree is scored using various metrics, including *parsimony*, *compatibility*, *total edge support*, and
-*minimum edge support*. Hence, the trees can be ranked according to these options.
+*minimum edge support*[^2]. Hence, the trees can be ranked according to these options.
 
-2. **Character annotations:** The user may select any character and see the most parsimonious annotation(s) of that character's
+[^2]: The compatibility score is the total number of characters that evolve on the tree without homoplasy (see @warnow2017computational 
+for further detail). To calculate total edge support and minimum edge support, we first calculate the number of characters that enforce, 
+or support, each edge, based on whether or not the collapse of that edge would increase the parsimony score. Total edge support is the 
+sum of these support values across all edges, and minimum edge support is the minimum of these values.
+
+3. **Character annotations:** The user may select any character and see the most parsimonious annotation(s) of that character's
 states across the tree (including reconstructed states at internal nodes). This is convenient for studying a character's behavior, and can help a linguist
 interpret the consequences of particular character codings on phylogeny estimation.
 
-3. **Incompatible characters:** This reports the characters that are not compatible on a tree. This is useful
+4. **Incompatible characters:** This reports the characters that are not compatible on a tree. This is useful
 for considering how plausible various trees are: if the set of characters that a tree is not compatible on seems unrealistic, 
 a linguist may wish to discard the tree in favor of other options.
 
-4. **Enforcing characters:** This reports the characters that enforce, or support, each edge in the tree. Thus, one may analyze evidence for 
+5. **Enforcing characters:** This reports the characters that enforce, or support, each edge in the tree. A character is deemed to
+support an edge if and only if the edge’s collapse increases the parsimony score for that character. This feautre allows one to analyze evidence for 
 and against various clades.
 
-5. **Relative chronology:** This reports a relative chronology of state changes *across* characters. This is calculated by first
+6. **Relative chronology:** This reports a relative chronology of state changes *across* characters. This is calculated by first
 determining the most parsimonious state transitions for each character, and then ordering these transitions based on
 the edges they occur on from the root of the tree to a specified clade. This type of relative chronology may seem unusual to the
 typical historical linguist, but its results can be illuminating.
