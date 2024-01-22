@@ -10,9 +10,11 @@
 #' @return List with parsimony information.
 run_parsimony <- function(tree,
                           char_rep) {
-  # Root the tree
+  # Root the tree - note that this WILL affect the order of the ancestral
+  #   likelihoods table - so it will need to be reshuffled later if the root
+  #   is different.....
   if ("anc_taxon" %in% names(char_rep)) outgroup <- char_rep$anc_taxon
-  else outgroup <- tree$tip.label[1]
+  else outgroup <- tree$tip.label[order(tree$tip.label)][1]
   tree <- ape::root(tree, outgroup = outgroup, resolve.root = TRUE)
 
   states_in_order <- c()
@@ -114,7 +116,6 @@ run_parsimony_on_each_char <- function(tree, char_reps) {
   ret <- list()
   for (idx in seq_along(char_reps)) {
     res <- run_parsimony(tree, char_reps[[idx]])
-
     ret <- append(ret, list(res))
   }
   ret
