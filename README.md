@@ -22,6 +22,8 @@ install.packages("remotes")
 remotes::install_github("marccanby/linguiphyr")
 ```
 
+The same command may be called to upgrade the package.
+
 **Step 2: Install PAUP\***
 
 Tree estimation is performed using PAUP\*, which must be installed separately: 

@@ -20,8 +20,8 @@ app_ui <- function(request) {
       fluidPage(
         theme = shinythemes::shinytheme("cerulean"),
         shinyjs::useShinyjs(),
-        sidebarPanel(style = paste0("position:fixed;width:250px;height:",
-                                    " 90vh; overflow-y: auto;"),
+        sidebarPanel(style = "height: 90vh; overflow-y: auto;",
+                     width = 2,
           conditionalPanel("input.inferenceTabsetPanel == \"Data Input\"",
             conditionalPanel("output.data_is_loaded",
               data_upload_ui_sidebar("data_upload")
@@ -35,8 +35,7 @@ app_ui <- function(request) {
           conditionalPanel("input.inferenceTabsetPanel == \"Analysis\"",
             analysis_ui_sidebar("analysis_computation"),
             analysis_tree_lists_ui("analysis_tree_lists")
-          ),
-          width = 2
+          )
         ),
         mainPanel(width = 10,
           tabsetPanel(

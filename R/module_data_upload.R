@@ -72,9 +72,7 @@ data_upload_ui <- function(id) {
                   fluidRow(column(6, fileInput(ns("data_input"),
                                                label = NULL,
                                                multiple = FALSE,
-                                               accept = NULL)),
-                           column(2,
-                                  actionButton(ns("data_upload"), "Upload"))),
+                                               accept = NULL))),
                   HTML(paste0("After uploading the data, you can adjust",
                               " preprocessing options in the left sidebar."))
                 ),
@@ -181,7 +179,7 @@ data_upload_server <-  function(id, my_vals) {
     col_start <- 5
 
     # Upload dataset
-    observeEvent(input$data_upload, {
+    observeEvent(input$data_input, {
       data <- read_and_validate_data(input$data_input$datapath)
 
       if (typeof(data) == "list") {

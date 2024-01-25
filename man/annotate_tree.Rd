@@ -4,7 +4,7 @@
 \alias{annotate_tree}
 \title{Annotate tree with states on internal nodes}
 \usage{
-annotate_tree(tree, char_rep, parsimony_rep)
+annotate_tree(tree, char_rep, parsimony_rep, edge_orig)
 }
 \arguments{
 \item{tree}{Tree to annotate}
@@ -13,6 +13,9 @@ annotate_tree(tree, char_rep, parsimony_rep)
 
 \item{parsimony_rep}{Parsimony result from running maximum parsimony on
 this tree with this character}
+
+\item{edge_orig}{Edge table of tree with original root; if anc_taxon
+was originally set, then should be NULL}
 }
 \value{
 List with annotations by edge id and mapping variable
