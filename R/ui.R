@@ -21,7 +21,7 @@ app_ui <- function(request) {
         theme = shinythemes::shinytheme("cerulean"),
         shinyjs::useShinyjs(),
         sidebarPanel(style = "height: 90vh; overflow-y: auto;",
-                     width = 2,
+          width = 2,
           conditionalPanel("input.inferenceTabsetPanel == \"Data Input\"",
             conditionalPanel("output.data_is_loaded",
               data_upload_ui_sidebar("data_upload")

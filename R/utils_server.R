@@ -60,8 +60,9 @@ get_tree_to_use <- function(tree_to_listen,
                             paup_is_weighted,
                             analysis_metrics) {
   colstart <- 5
-  if (!isolate(my_vals$paup_finished ||
-                 my_vals$analysis_upload_finished)) return()
+  if (!isolate(my_vals$is_on_analysis_page &&
+                 (my_vals$paup_finished ||
+                    my_vals$analysis_upload_finished))) return()
   to_listen <- tree_to_listen
   if (to_listen$set == "none") return()
   else if (to_listen$set %in% c("paup", "ref"))
@@ -90,7 +91,6 @@ get_tree_to_use <- function(tree_to_listen,
   }
 
   # Get tree that was selected
-  proceed <- TRUE
   if (tree_to_do %in% c("Strict Consensus", "Majority Consensus")) {
     consensus_trees <- make_consensus_trees(trees)
     idx <- which(consensus_trees$names == tree_to_do)

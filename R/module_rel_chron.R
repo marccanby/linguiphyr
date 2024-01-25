@@ -90,7 +90,9 @@ analysis_rel_chron_server <- function(id,
         output$analysis_relative_chronology <- NULL
         return()
       }
-      if (!(my_vals$paup_finished || my_vals$analysis_upload_finished)) return()
+      if (!(my_vals$is_on_analysis_page &&
+              (my_vals$paup_finished ||
+                 my_vals$analysis_upload_finished))) return()
 
 
       ttl <- tree_to_listen()
@@ -103,7 +105,6 @@ analysis_rel_chron_server <- function(id,
       if (is.null(tree_to_use)) return()
       tree_to_do <- tree_to_use$tree_to_do
       tree <- tree_to_use$tree
-      set <- tree_to_use$set
 
       root_of_tree <- analysis_root_drop()
       cache_id <- paste0(ttl$set, "_", tree_to_do)

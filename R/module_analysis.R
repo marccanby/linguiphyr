@@ -257,7 +257,8 @@ analysis_server <- function(id,
 
     # Disallow root selection if a root was required for data input
     observe({
-      if (my_vals$paup_finished || my_vals$analysis_upload_finished) {
+      if (my_vals$is_on_analysis_page && (my_vals$paup_finished ||
+                                            my_vals$analysis_upload_finished)) {
         to_listen <- tree_to_listen() # Not totally sure why need this
         isolate({
           ns <- session$ns
@@ -300,14 +301,16 @@ analysis_server <- function(id,
                                    char_to_put)
 
       render_plotly <- plotly::renderPlotly(p3)
-      attr(render_plotly, "outputArgs") <- list(height = "850px")
+      attr(render_plotly, "outputArgs") <- list(height = input$analysis_height)
       output[["analysis_tree_plotly"]] <- renderUI(render_plotly)
 
     })
 
     # Analysis tree computation
     observe({
-      if (!(my_vals$paup_finished || my_vals$analysis_upload_finished)) return()
+      t <- tree_to_listen()
+      if (t$set == "none") return()
+
       # Get tree to use
       tree_to_use <- get_tree_to_use(tree_to_listen(),
                                      my_vals,

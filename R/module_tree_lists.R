@@ -46,6 +46,7 @@ analysis_tree_lists_server <- function(id,
 
     # Upload file for analysis trees
     observeEvent(input$analysis_input, {
+      showModal(modalDialog(fluidPage("Loading....."), footer = NULL))
       my_vals$analysis_upload_finished <- FALSE
       leafset <- names(my_vals[["data"]])[col_start:ncol(my_vals[["data"]])]
 
@@ -84,6 +85,8 @@ analysis_tree_lists_server <- function(id,
         return()
       }
       my_vals$analysis_upload_finished <- TRUE
+
+      removeModal()
 
     })
 
@@ -124,7 +127,10 @@ analysis_tree_lists_server <- function(id,
     # Set PAUP radio buttons
     observe({
       x <- my_vals$paup_finished
-      if (!x) return()
+      y <- my_vals$is_on_analysis_page
+      if (!(x && y)) return()
+
+      showModal(modalDialog(fluidPage("Loading....."), footer = NULL))
 
       names_to_do <- analysis_metrics()
 
@@ -132,6 +138,7 @@ analysis_tree_lists_server <- function(id,
         char_reps <- cache[["cache"]][["char_reps"]]
 
         insert_root <- data_upload_root_drop()
+
         code <- {
           read_and_name_trees_paup(char_reps,
                                    paup_is_weighted(),
@@ -163,6 +170,8 @@ analysis_tree_lists_server <- function(id,
                        inline = FALSE)
         })
       })
+
+      removeModal()
 
     })
 

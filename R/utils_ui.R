@@ -121,11 +121,14 @@ get_uninf_char_text <- function(uninf_chars, df) {
 show_loading_for_paup <- function(is_exhaustive) {
   if (is_exhaustive) {
     showModal(modalDialog(fluidPage("Running....."), footer = NULL))
+    Sys.sleep(4)
     withProgress(message = "Running PAUP*", min = 0, max = 1, value = 0, {
       mx <- 0
       while (mx != 1) {
         Sys.sleep(1)
-        prog <- readChar("paup_run.txt", file.info("paup_run.txt")$size)
+        tmp <- tempdir()
+        paup_run <- file.path(tmp, "paup_run.txt")
+        prog <- readChar(paup_run, file.info(paup_run)$size)
         nums <- stringr::str_extract_all(prog, "\\d*\\.\\d*%")[[1]]
         if (length(nums) == 0) break
         final <- nums[length(nums)]
@@ -139,7 +142,16 @@ show_loading_for_paup <- function(is_exhaustive) {
     removeModal()
   } else {
     showModal(modalDialog(fluidPage("Running....."), footer = NULL))
-    Sys.sleep(4)
+    error_msg <- "Execution terminated due to errors."
+    success_msg <- "Heuristic search completed"
+    success_msg2 <- "Search terminated prematurely"
+    while (TRUE) {
+      Sys.sleep(1)
+      paup_output <- get_paup_output_strings()$paup_output
+      if (grepl(error_msg, paup_output) ||
+            grepl(success_msg, paup_output) ||
+            grepl(success_msg2, paup_output)) break
+    }
     removeModal()
   }
 }
@@ -427,7 +439,6 @@ make_tree_plot_wrapper <- function(tree_to_use,
                                    width,
                                    char_to_put = NULL) {
 
-  proceed <- tree_to_use$proceed
   tree_to_do <- tree_to_use$tree_to_do
   tree  <-  tree_to_use$tree
   set  <-  tree_to_use$set

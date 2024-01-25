@@ -142,7 +142,7 @@ annotate_tree <- function(tree, char_rep, parsimony_rep, edge_orig) {
 
   # Three post-processing changes, due to the new root.
   if (!(("anc_taxon" %in% names(char_rep)) ||
-        all(edge_orig[1:3] == edge[1:3]))) {
+          all(edge_orig[1:3] == edge[1:3]))) {
     # 1. Head of edge that is graphically to the above right of OLD root
     #    (MAIN edge) becomes base of that same edge id in new tree.
 

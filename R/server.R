@@ -17,6 +17,15 @@ app_server <- function(input, output, session) {
   my_vals$paup_finished <- FALSE
   my_vals$paup_generated <- FALSE
   my_vals$analysis_upload_finished <- FALSE
+  my_vals$is_on_analysis_page <- FALSE
+
+  observe({
+    if (input$inferenceTabsetPanel == "Analysis") {
+      my_vals$is_on_analysis_page <- TRUE
+    } else {
+      my_vals$is_on_analysis_page <- FALSE
+    }
+  })
 
   cache <- reactiveValues()
   cache[["cache"]] <- list()
