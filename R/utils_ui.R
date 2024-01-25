@@ -448,11 +448,24 @@ make_tree_plot_wrapper <- function(tree_to_use,
     char_rep <- cache[["cache"]][["char_reps"]][[idxh]]
     parsimony_rep <- parsimony_cache[[idxh]]
 
+    # Get original edge table, which will be relevant if the root gets
+    #   is to be switched
+    if (("anc_taxon" %in% names(char_rep))) {
+      edge_orig <- NULL
+    } else {
+      r <- tree$tip.label[order(tree$tip.label)][1]
+      edge_orig <- make_edges(ape::root(tree,
+                                        r,
+                                        resolve.root = TRUE))$edge
+    }
+
     annotations <- annotate_tree(ape::root(tree,
                                            root_of_tree,
                                            resolve.root = TRUE),
                                  char_rep,
-                                 parsimony_rep)$edge
+                                 parsimony_rep,
+                                 edge_orig)$edge
+
   }
 
   if (!ape::is.binary(tree)) {

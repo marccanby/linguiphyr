@@ -69,9 +69,11 @@ find_chars_supporting_clade <- function(clade, df) {
 #' @param char_rep Character representation with which tree is to be annotated
 #' @param parsimony_rep Parsimony result from running maximum parsimony on
 #'   this tree with this character
+#' @param edge_orig Edge table of tree with original root; if anc_taxon
+#'   was originally set, then should be NULL
 #'
 #' @return List with annotations by edge id and mapping variable
-annotate_tree <- function(tree, char_rep, parsimony_rep) {
+annotate_tree <- function(tree, char_rep, parsimony_rep, edge_orig) {
   assertthat::assert_that({
     ape::is.rooted(tree)
   })
@@ -110,13 +112,89 @@ annotate_tree <- function(tree, char_rep, parsimony_rep) {
   #   final_res has 2n-1 items.
   # A bit post hoc, but now match with bipartitions. Since root doesn't matter
   #   for this, we'll end up with 2n-2 items.
+  # Important note: the node id's in res (and hence final_res) are based on the
+  #   rooting of the tree done at parsimony computation time. So either
+  #   anc_taxon or the first alphabetically. If the root is different now,
+  #   then have to do a scrambling.
 
   resh <- make_edges(tree)
   edge <- resh$edge
   mapping <- resh$mapping
+
+  # edge_orig table is for scrambling, if needed.
+  if (("anc_taxon" %in% names(char_rep)) || all(edge_orig[1:3] == edge[1:3])) {
+    edge_orig <- edge
+  } else {
+    assertthat::assert_that(!is.null(edge_orig))
+  }
+
+
   edge$label <- NA
   for (i in seq_len(nrow(edge))) {
-    edge$label[i] <- final_res[edge$node[i]]
+    if (edge$edge_num[i] == " ") {
+      edge$label[i] <- final_res[edge$node[i]]
+    } else {
+      edge_id <- edge$edge_num[i]
+      node_id_in_orig_table <- edge_orig[edge_orig$edge_num == edge_id, "node"]
+      edge$label[i] <- final_res[node_id_in_orig_table]
+    }
+  }
+
+  # Three post-processing changes, due to the new root.
+  if (!(("anc_taxon" %in% names(char_rep)) ||
+        all(edge_orig[1:3] == edge[1:3]))) {
+    # 1. Head of edge that is graphically to the above right of OLD root
+    #    (MAIN edge) becomes base of that same edge id in new tree.
+
+    tip_label <- tree$tip.label
+    old_root_idx <- which(tip_label == tip_label[order(tip_label)[1]])
+    old_root_par <- edge_orig$parent[edge_orig$node == old_root_idx]
+    new_node_id <- edge_orig$node[edge_orig$parent == old_root_par]
+    new_node_id <- new_node_id[new_node_id != old_root_idx]
+    label <- edge$label[edge$node == new_node_id]
+
+    cands_for_edge_num <- edge_orig$edge_num[edge_orig$parent == new_node_id]
+    corr_node_ids <- edge_orig$node[edge_orig$edge_num %in% cands_for_edge_num]
+    assertthat::assert_that(length(corr_node_ids) == 2)
+    # By construction, one of these must be a subset of the other in mapping.
+    #   The one that is NOT a subset corresponds to edge id of MAIN edge.
+    cand1 <- mapping[[as.character(corr_node_ids[1])]]
+    cand2 <- mapping[[as.character(corr_node_ids[2])]]
+    cand1_bool <- all(cand1 %in% cand2)
+    cand2_bool <- all(cand2 %in% cand1)
+    assertthat::assert_that(cand1_bool || cand2_bool)
+    if (cand1_bool) main_edge_id <- cands_for_edge_num[2]
+    else main_edge_id <- cands_for_edge_num[1]
+    where_to_put_label1 <- edge$edge_num == main_edge_id
+    label1 <- label
+
+    # 2. Base of NEW root needs to be head of that root in old tree.
+    special_parent <- edge$parent[which(!(edge$parent %in% edge$node))][1]
+    new_root_id <- edge$node[edge$parent == special_parent]
+    new_root_id <- new_root_id[new_root_id <= length(tree$tip.label)]
+    condition <- edge_orig$node == new_root_id
+    condition <- edge_orig$node == edge_orig$parent[condition]
+    new_main_edge_num <- edge_orig$edge_num[condition]
+    label <- edge$label[edge$edge_num == new_main_edge_num]
+
+    new_node_id <- edge$node[edge$parent == special_parent]
+    new_node_id <- new_node_id[new_node_id != new_root_id]
+    where_to_put_label2 <- edge$node == new_node_id
+    label2 <- label
+
+    # 3. Base of NEW MAIN edge needs to be head of that edge's edge id in old
+    #    tree.
+    par <- edge_orig$parent[edge_orig$edge_num == new_main_edge_num]
+    par_edge <- edge_orig$edge_num[edge_orig$node == par]
+    label <- edge$label[edge$edge_num == par_edge]
+    where_to_put_label3 <- edge$edge_num == new_main_edge_num
+    label3 <- label
+
+    # Actually put the labels now
+    edge$label[where_to_put_label1] <- label1
+    edge$label[where_to_put_label2] <- label2
+    edge$label[where_to_put_label3] <- label3
+
   }
 
   list(edge = edge, mapping = mapping)

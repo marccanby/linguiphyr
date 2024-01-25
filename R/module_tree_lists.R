@@ -18,7 +18,6 @@ analysis_tree_lists_ui <- function(id) {
                               label = NULL,
                               multiple = FALSE,
                               accept = NULL))),
-    fluidRow(column(12,  actionButton(ns("analysis_upload"), "Upload"))),
     conditionalPanel("output.analysis_upload_finished",
                      htmlOutput(ns("analysis_treeupload_radio_html")))
   )
@@ -46,7 +45,7 @@ analysis_tree_lists_server <- function(id,
     col_start <- 5
 
     # Upload file for analysis trees
-    observeEvent(input$analysis_upload, {
+    observeEvent(input$analysis_input, {
       my_vals$analysis_upload_finished <- FALSE
       leafset <- names(my_vals[["data"]])[col_start:ncol(my_vals[["data"]])]
 

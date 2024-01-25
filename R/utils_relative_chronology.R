@@ -15,9 +15,22 @@ make_chronology_for_char <- function(tree,
                                      char_rep,
                                      parsimony_rep,
                                      root) {
+
+  # Get original edge table, which will be relevant if the root gets
+  #   is to be switched
+  if (("anc_taxon" %in% names(char_rep))) {
+    edge_orig <- NULL
+  } else {
+    r <- tree$tip.label[order(tree$tip.label)][1]
+    edge_orig <- make_edges(ape::root(tree,
+                                      r,
+                                      resolve.root = TRUE))$edge
+  }
+
   resh <- annotate_tree(ape::root(tree, root, resolve.root = TRUE),
                         char_rep,
-                        parsimony_rep)
+                        parsimony_rep,
+                        edge_orig)
   annotations <- resh$edge
   mapping <- resh$mapping
 
