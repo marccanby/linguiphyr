@@ -37,8 +37,8 @@ data_upload_ui <- function(id) {
   fluidPage(
     wellPanel(
               tabsetPanel(
-                tabPanel("Data Input",
-                  h4("Data Input"),
+                tabPanel("Data Upload",
+                  h4("Data Upload"),
                   HTML(paste0("You can upload a CSV file containing",
                               " the character data below.
                               The first row should contain column/language ",

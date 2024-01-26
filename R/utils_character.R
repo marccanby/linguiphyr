@@ -133,7 +133,7 @@ make_character_representation <- function(row,
     if (is.null(mat)) {
       return(paste0("The custom character specification could not be parsed.",
                     " Make sure it conforms to the specifications ",
-                    "on the \'Data Input\' tab."))
+                    "on the \'Data Upload\' tab."))
     }
     res$custom_matrix <- mat
   }

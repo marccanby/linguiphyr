@@ -22,7 +22,7 @@ app_ui <- function(request) {
         shinyjs::useShinyjs(),
         sidebarPanel(style = "height: 90vh; overflow-y: auto;",
           width = 2,
-          conditionalPanel("input.inferenceTabsetPanel == \"Data Input\"",
+          conditionalPanel("input.inferenceTabsetPanel == \"Data Upload\"",
             conditionalPanel("output.data_is_loaded",
               data_upload_ui_sidebar("data_upload")
             )
@@ -39,7 +39,7 @@ app_ui <- function(request) {
         ),
         mainPanel(width = 10,
           tabsetPanel(
-            tabPanel("Data Input",
+            tabPanel("Data Upload",
               data_upload_ui("data_upload")
             ),
             tabPanel("Tree Search",
