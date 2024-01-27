@@ -6,11 +6,6 @@
 app_server <- function(input, output, session) {
   options(shiny.maxRequestSize = 30 * 1024^2)
 
-  # For now, suppress all warnings. It's not ideal, but plotly spews a bunch
-  #   of warnings that aren't even a problem. Ideally I'd just suppress those,
-  #   but that does not seem easy.......
-  options(warn = -1)
-
   # Reactive variables
   my_vals <- reactiveValues()
   my_vals$data_is_loaded <- FALSE

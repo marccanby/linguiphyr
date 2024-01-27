@@ -300,7 +300,19 @@ analysis_server <- function(id,
                                    input$analysis_width,
                                    char_to_put)
 
-      render_plotly <- plotly::renderPlotly(p3)
+      render_plotly <- plotly::renderPlotly({
+        # To suppress benign warning, follow instructions at
+        #   https://stackoverflow.com/questions/70986061/suppress-warning-
+        #   heatmap-objects-dont-have-these-attributes-mode
+        store_warn <- getOption("warn")
+        options(warn = -1)
+
+        # Restore warnings, delayed once plot renders
+        shinyjs::delay(expr = ({
+          options(warn = store_warn)
+        }), ms = 200)
+        p3
+      })
       attr(render_plotly, "outputArgs") <- list(height = input$analysis_height)
       output[["analysis_tree_plotly"]] <- renderUI(render_plotly)
 
@@ -336,7 +348,19 @@ analysis_server <- function(id,
                                    NULL)
 
 
-      render_plotly <- plotly::renderPlotly(p3)
+      render_plotly <- plotly::renderPlotly({
+        # To suppress benign warning, follow instructions at
+        #   https://stackoverflow.com/questions/70986061/suppress-warning-
+        #   heatmap-objects-dont-have-these-attributes-mode
+        store_warn <- getOption("warn")
+        options(warn = -1)
+
+        # Restore warnings, delayed once plot renders
+        shinyjs::delay(expr = ({
+          options(warn = store_warn)
+        }), ms = 200)
+        p3
+      })
       attr(render_plotly, "outputArgs") <- list(height = input$analysis_height)
       output[["analysis_tree_plotly"]] <- renderUI(render_plotly)
       output$analysis_tree_title <- renderUI(h4(tree_to_do))

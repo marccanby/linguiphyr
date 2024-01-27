@@ -81,7 +81,7 @@ paup_server <- function(id,
 
     col_start <- 5
 
-    generateNexusString <- function() {
+    generate_nexus_string <- function() {
       keep <- NULL
       is_exhaustive <- NULL
       is_weighted <- NULL
@@ -123,7 +123,7 @@ paup_server <- function(id,
     }
 
     observeEvent(input$paup_generate_nexus, {
-      nexus_str <- generateNexusString()
+      nexus_str <- generate_nexus_string()
       if (substr(nexus_str[1], 1, 7) == "ERROR: ") {
         assertthat::assert_that(length(nexus_str) == 1)
         generate_error(substr(nexus_str, 8, nchar(nexus_str[1])))
@@ -139,7 +139,7 @@ paup_server <- function(id,
 
     observeEvent(input$paup_run, {
       is_exhaustive <- input$paup_is_exhaustive
-      nexus_str <- generateNexusString()
+      nexus_str <- generate_nexus_string()
       if (substr(nexus_str[1], 1, 7) == "ERROR: ") {
         assertthat::assert_that(length(nexus_str) == 1)
         generate_error(substr(nexus_str, 8, nchar(nexus_str[1])))
@@ -183,7 +183,7 @@ paup_server <- function(id,
         "paup_nexus.nex"
       },
       content = function(file) {
-        nexus_str <- generateNexusString()
+        nexus_str <- generate_nexus_string()
         assertthat::assert_that(substr(nexus_str[1], 1, 7) != "ERROR: ")
         sink(file)
         cat(nexus_str)
