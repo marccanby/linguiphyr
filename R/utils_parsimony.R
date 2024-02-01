@@ -358,11 +358,11 @@ run_paup <- function(nexus_string) {
   paup_out_scores <- file.path(tmp, "paup_out.scores")
 
   # Remove files from previous runs
-  file.remove(lnexus)
-  file.remove(paup_out)
-  file.remove(paup_run)
-  file.remove(paup_out_trees)
-  file.remove(paup_out_scores)
+  if (file.exists(lnexus)) file.remove(lnexus)
+  if (file.exists(paup_out)) file.remove(paup_out)
+  if (file.exists(paup_run)) file.remove(paup_run)
+  if (file.exists(paup_out_trees)) file.remove(paup_out_trees)
+  if (file.exists(paup_out_scores)) file.remove(paup_out_scores)
 
   # Write nexus string
   sink(lnexus)
@@ -392,6 +392,7 @@ get_paup_output_strings <- function() {
   tmp <- tempdir()
   lnexus <- file.path(tmp, "ling_nexus.nex")
   paup_out <- file.path(tmp, "paup_out.txt")
+  paup_run <- file.path(tmp, "paup_run.txt")
 
   paup_input <- readChar(lnexus, file.info(lnexus)$size)
   paup_input <- gsub("\n", "<br>", paup_input)
@@ -401,5 +402,11 @@ get_paup_output_strings <- function() {
   paup_output <- gsub("\n", "<br>", paup_output)
   paup_output <- gsub("\t", "&emsp;", paup_output)
 
-  list(paup_input = paup_input, paup_output = paup_output)
+  paup_runput <- readChar(paup_run, file.info(paup_run)$size)
+  paup_runput <- gsub("\n", "<br>", paup_runput)
+  paup_runput <- gsub("\t", "&emsp;", paup_runput)
+
+  list(paup_input = paup_input,
+       paup_output = paup_output,
+       paup_run = paup_runput)
 }

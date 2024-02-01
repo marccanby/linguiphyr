@@ -145,15 +145,30 @@ show_loading_for_paup <- function(is_exhaustive) {
     error_msg <- "Execution terminated due to errors."
     success_msg <- "Heuristic search completed"
     success_msg2 <- "Search terminated prematurely"
+    paup_not_found <- FALSE
     while (TRUE) {
       Sys.sleep(1)
-      paup_output <- get_paup_output_strings()$paup_output
+      paup_strings <- get_paup_output_strings()
+      paup_output <- paup_strings$paup_output
+      paup_run <- paup_strings$paup_run
       if (grepl(error_msg, paup_output) ||
             grepl(success_msg, paup_output) ||
             grepl(success_msg2, paup_output)) break
+      if (grepl("command not found", paup_run)) {
+        paup_not_found <- TRUE
+        break
+      }
     }
     removeModal()
+    if (paup_not_found) {
+      showModal(modalDialog(fluidPage(paste0("PAUP* binary not found. Make",
+                                             " sure you have followed the",
+                                             " installation instructions."))))
+      return(FALSE)
+    }
   }
+
+  return(TRUE)
 }
 
 

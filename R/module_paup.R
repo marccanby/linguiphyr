@@ -149,20 +149,22 @@ paup_server <- function(id,
 
       # Run PAUP*
       run_paup(nexus_str)
-      show_loading_for_paup(is_exhaustive)
+      success <- show_loading_for_paup(is_exhaustive)
 
       # Show input/output files for PAUP*
       paup_strings <- get_paup_output_strings()
       output$paup_input <- renderUI({
         HTML(paup_strings$paup_input)
       })
-      output$paup_output <- renderUI({
-        HTML(paup_strings$paup_output)
-      })
 
-      # Mark PAUP* as finished
-      my_vals$paup_finished <- TRUE
+      if (success) {
+        output$paup_output <- renderUI({
+          HTML(paup_strings$paup_output)
+        })
 
+        # Mark PAUP* as finished
+        my_vals$paup_finished <- TRUE
+      }
     })
 
     # Download trees
