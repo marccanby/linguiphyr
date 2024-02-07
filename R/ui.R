@@ -10,7 +10,20 @@ app_ui <- function(request) {
         style = paste0("position: fixed; top: 0; width: 100%; background:",
                        " linear-gradient(to bottom, #5DA9E4, #337EC1);",
                        " padding: 10px;"),
-        h4("LinguiPhyR", style = "margin: 0; color: white;")
+        fluidRow(
+          column(6,
+            h4("LinguiPhyR", style = "color: white;")
+          ),
+          column(6,
+            HTML(paste0("<div style=\"float:right;\"><div ",
+                        "style=\"color:white; font-weight: normal;",
+                        " font-size: 8px; height: 100%;",
+                        " line-height:41px;\">Version ",
+                        packageVersion("linguiphyr"),
+                        "</div></div>")
+            )
+          )
+        )
       ),
       tags$style(type = "text/css",
         paste0("body {padding-top: 70px;} #analysis_tree_radio .radio label ",
@@ -38,6 +51,7 @@ app_ui <- function(request) {
           )
         ),
         mainPanel(width = 10,
+          style = "height: 90vh; overflow-y: auto;",
           tabsetPanel(
             tabPanel("Data Upload",
               data_upload_ui("data_upload")

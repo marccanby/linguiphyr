@@ -161,9 +161,46 @@ show_loading_for_paup <- function(is_exhaustive) {
     }
     removeModal()
     if (paup_not_found) {
-      showModal(modalDialog(fluidPage(paste0("PAUP* binary not found. Make",
-                                             " sure you have followed the",
-                                             " installation instructions."))))
+
+      markdown <- paste0("<br><br><ol><li>Go to <a href=
+      \"http://phylosolutions.com/paup-test/\">
+      http://phylosolutions.com/paup-test/</a>.<br>
+      <li>For Mac:<br>
+      <ol><li>Click on <code>paup4a168_osx.gz</code>, which will download a
+      zipped file. Unzip it, and rename the resulting <code>paup4a168_osx</code>
+      file to <code>paup</code>.<br>
+      <li>Move this file to a new directory
+      (e.g. <code>~/Documents/paup/</code>) on your computer.<br>
+      <li>Navigate to this directory, and run <code>chmod a+x paup</code>
+      to enable executable permissions on the file.<br>
+      <li>To make this binary available to R, run the following
+      command in R:<br>
+      <code>
+      Sys.setenv(PATH = paste(\"~/Documents/paup/:\",
+      Sys.getenv(\"PATH\"), sep=\"\"))
+      </code><br>
+      Replace <code>~/Documents/paup/</code> with the directory
+      where you put the PAUP* binary.
+      This will only make the binary available for your current R session. If
+      you want to make it permanently available, you can add this line to your
+      R profile file,
+      which is typically located at <code>~/.Rprofile</code> or
+      <code>~/.Rprofile.site</code>.<br>
+      </ol>
+      <li>For Windows:<br>
+      <ol><li>Click on <code>paup4-setup.msi</code>, follow the directions to
+      install it.<br></ol></ol>")
+
+      github_link <- "https://github.com/marccanby/linguiphyr/tree/main"
+
+      showModal(modalDialog(fluidPage(HTML(paste0("PAUP* binary not found. ",
+                                                  "Make sure you have followed",
+                                                  " the installation",
+                                                  " instructions on the",
+                                                  " <a href=\"", github_link,
+                                                  "\">Github page</a>:")),
+                                      HTML(markdown)),
+                            title = "Error!", size = "l"))
       return(FALSE)
     }
   }
