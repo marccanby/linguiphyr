@@ -19,7 +19,7 @@ app_ui <- function(request) {
                         "style=\"color:white; font-weight: normal;",
                         " font-size: 8px; height: 100%;",
                         " line-height:41px;\">Version ",
-                        packageVersion("linguiphyr"),
+                        utils::packageVersion("linguiphyr"),
                         "</div></div>")
             )
           )

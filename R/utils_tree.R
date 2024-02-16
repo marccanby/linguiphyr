@@ -9,6 +9,11 @@
 #' @return Tree with collapsed edge
 collapse_edge <- function(tree, node1, node2) {
   tree2 <- tree
+  assertthat::assert_that(tree$edge[tree$edge[, 2] == node2, ][1] == node1,
+                          msg = "Edge does not exist in tree.")
+  assertthat::assert_that(node1 > length(tree$tip.label) &&
+                            node2 > length(tree$tip.label),
+                          msg = "Collapsing leaf edges is not supported.")
   tree2$edge <- tree$edge[!(tree$edge[, 1] == node1 &
                               tree$edge[, 2] == node2), ]
   tree2$edge[tree2$edge[, 1] == node2, 1] <- node1

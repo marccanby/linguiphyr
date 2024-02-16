@@ -39,6 +39,7 @@ find_uninformative_characters <- function(df) {
 #'
 #' @return Data frame containing only characters that support provided clade
 find_chars_supporting_clade <- function(clade, df) {
+  if (length(clade) <= 1) stop("Clade must contain at least two languages.")
   colstart <- 5
   idxes <- c()
   data_ <- replace_qs_with_nums(df)
