@@ -1,5 +1,8 @@
 # LinguiphyR
 
+<!-- badges: start -->
+<!-- badges: end -->
+
 LinguiphyR is a package that provides an R Shiny app that enables parsimony-based linguistic phylogenetic analysis. You can upload a 
 dataset of linguistic characters to the app, run a search to find optimal trees, and analyze the trees using a variety of tools
 and visualizations.
