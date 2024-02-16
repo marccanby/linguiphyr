@@ -3,9 +3,6 @@
 \name{\%<+\%}
 \alias{\%<+\%}
 \title{Ggtree backward operator}
-\usage{
-lhs \%<+\% rhs
-}
 \arguments{
 \item{lhs}{A value}
 
