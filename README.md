@@ -78,6 +78,10 @@ Follow these steps:
 
 ![Analysis page of LinguiphyR.\label{fig:example}](paper/figure.png)
 
-## Contact
+## How to Contribute
 
-If you have any questions or suggestions about LinguiPhyR, please create an issue, or send an email to marc.canby@gmail.com!
+If you have any questions or feedback regarding LinguiPhyR, or encounter a bug, please create an issue, or send an email to marc.canby@gmail.com! 
+
+We also welcome code contributions from the community. Please adhere to the following guidelines:
+* If you would like to fix a bug raised by an issue, create a pull request with your proposed changes.
+* If you are interested in suggesting a new feature, first create an issue for others to discuss before proceeding with a pull request.
