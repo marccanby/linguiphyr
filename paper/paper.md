@@ -95,7 +95,7 @@ the phylogenetics literature, such as *character*, *polymorphism*, and *parsimon
 
 The user first uploads a dataset of linguistic characters, which encode certain properties about languages that are likely
 to be relevant to the branching structure of the underlying tree. The characters should
-be specified in a spreadsheet and uploaded as a CSV file. An example of the data format is shown below:
+be specified in a spreadsheet and uploaded as a CSV file. An example of the data format is shown below[^1]:
 
 | id   | feature | weight | chartype | HI | AR | GK | AL | TB | VE | AV | OC | LI | $\cdots$
 | ----------- | ----------- | ----------- | ----------- | ----------- |----------- |----------- |----------- |----------- |----------- |----------- |----------- |----------- |-----------
@@ -104,6 +104,9 @@ be specified in a spreadsheet and uploaded as a CSV file. An example of the data
 | c50 | bird |1|standard|1 | 2 | 3 | 4 | 5 | 6 | 6 | 7 | 8 |$\cdots$
 
 Table: Example dataset specification, excerpted from the screened Indo-European dataset of @ringe2002indo.
+
+[^1]: We provide the screened version of the Indo-European dataset of @ringe2002indo in the correct format at the path
+`data/ringe_screened_dataset.csv` in the LinguiPhyR Github repository.
 
 <!---, and the columns represent attested languages (the leaves of the tree). --->
 Each row represents a character. The first four columns
@@ -156,9 +159,9 @@ the character is parsimony-informative (among others). The dataset may be sorted
 * **Clade Analysis:** The user may select a subset of languages and analyze what characters provide support for 
 such a clade (a clade is a subset of languages separated from all other languages by an edge in the tree).
 This is computed in the strictest sense: a character only supports a hypothetical clade if the languages
-in the clade all share the same state, and all other languages share a different state.[^1]
+in the clade all share the same state, and all other languages share a different state.[^2]
 
-[^1]: It is important to note that a clade *on a particular tree* may be supported by more than just the characters that meet 
+[^2]: It is important to note that a clade *on a particular tree* may be supported by more than just the characters that meet 
 this condition. For example, if the dominant cognate class in a clade is lost by just one language in the clade, the character 
 will still support the grouping if the removal of the edge separating the clade from all other languages would produce a 
 less parsimonious tree. This can be examined in the "Analysis" page of the application.
@@ -171,6 +174,9 @@ language states. The five special columns are:
 * **chartype optional, default 'standard':** The character type. This may be *standard*, *irreversible*, or *custom*,
 the last of which requires a special declaration format described in the app itself.--->
 
+An example usage of the "Data Upload" page is shown in \autoref{fig:figure1}; here one can see the screened dataset of @ringe2002indo uploaded.
+
+!["Data Upload" page of LinguiPhyR.\label{fig:figure1}](figure1.png)
 
 ## Tree Search
 
@@ -180,6 +186,10 @@ and other phylogenetic analyses. The user may specify various optimization crite
 having to write configuration files by hand, which is a big barrier to entry for many linguists. Nonetheless, users may download these 
 configuration files from the app and modify them as needed.
 
+\autoref{fig:figure2} demonstrates tree search using PAUP\*.
+
+!["Tree Search" page of LinguiPhyR.\label{fig:figure2}](figure2.png)
+
 ## Analysis
 
 Finally, one may use the dataset to analyze trees. These trees can be either the result of a PAUP\* tree search, or 
@@ -188,9 +198,9 @@ dataset exhibits for various trees accepted by the community. Strict and majorit
 are displayed as well. The primary analyses that can be performed on a tree are the following:
 
 1. **Tree Score:** Each tree is scored using various metrics, including *parsimony*, *compatibility*, *total edge support*, and
-*minimum edge support*[^2]. Hence, the trees can be ranked according to these options.
+*minimum edge support*[^3]. Hence, the trees can be ranked according to these options.
 
-[^2]: The compatibility score is the total number of characters that evolve on the tree without homoplasy (see @warnow2017computational 
+[^3]: The compatibility score is the total number of characters that evolve on the tree without homoplasy (see @warnow2017computational 
 for further detail). To calculate total edge support and minimum edge support, we first calculate the number of characters that enforce, 
 or support, each edge, based on whether or not the collapse of that edge would increase the parsimony score. Total edge support is the 
 sum of these support values across all edges, and minimum edge support is the minimum of these values.
@@ -212,9 +222,9 @@ determining the most parsimonious state transitions for each character, and then
 the edges they occur on from the root of the tree to a specified clade. This type of relative chronology may seem unusual to the
 typical historical linguist, but its results can be illuminating.
 
-\autoref{fig:example} depicts an example tree analysis in LinguiPhyR.
+\autoref{fig:figure3} depicts an example tree analysis in LinguiPhyR, based on the screened dataset of @ringe2002indo.
 
-![Analysis page of LinguiphyR.\label{fig:example}](figure.png)
+![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
 
 # Conclusions
 
