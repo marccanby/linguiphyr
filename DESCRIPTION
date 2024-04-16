@@ -1,7 +1,7 @@
 Package: linguiphyr
 Type: Package
 Title: Linguisitc Phylogenetic Analysis in R
-Version: 0.3.0
+Version: 0.3.1
 Author: Marc E. Canby
 Maintainer: Marc E. Canby <marc.canby@gmail.com>
 Description: R Shiny app for performing linguistic phylogenetic analysis in R.
