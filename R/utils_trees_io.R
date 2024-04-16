@@ -248,7 +248,15 @@ read_and_name_trees_file <- function(file,
                                      leafset,
                                      is_weighted,
                                      do_unroot = TRUE) {
-  trees <- ape::read.nexus(file, tree.names = NULL, force.multi = TRUE)
+  trees <- tryCatch({
+    ape::read.nexus(file, tree.names = NULL, force.multi = TRUE)
+  },
+  error = function(e) {
+    return(paste0("An invalid Nexus file was uploaded. ",
+                  "Please make sure that you're uploading a ",
+                  "valid Nexus file with trees."))
+  })
+  if (is.character(trees)) return(trees) # Error
 
   nms <- names(trees)
   error <- c()
@@ -259,14 +267,20 @@ read_and_name_trees_file <- function(file,
       nms[i] <- substr(nms[i], 2, nchar(nms[i]) - 1)
     }
     tips <- tree$tip.label
-    if (!all(tips[order(tips)] == leafset[order(leafset)])) {
+    if (length(tips) != length(leafset) ||
+          !all(tips[order(tips)] == leafset[order(leafset)])) {
+      tips <- tips[order(tips)]
+      leafset <- leafset[order(leafset)]
       error <- c(error,
                  paste0(nms[i],
                         " does not have the same leafset as  the data you",
-                        " have uploaded."))
+                        " have uploaded.<br>Leafset of this tree: ",
+                        paste0(tips, collapse = ", "), "<br>Leafset of your ",
+                        "dataset: ",
+                        paste0(leafset, collapse = ", ")))
     }
   }
-  if (!is.null(error)) return(paste0(error, collapse = "\n"))
+  if (!is.null(error)) return(paste0(error, collapse = "<br><br>"))
 
   if (do_unroot) trees <- ape::unroot(trees)
   if (is_weighted) sort_by <- "wmp"

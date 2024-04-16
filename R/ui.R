@@ -46,8 +46,10 @@ app_ui <- function(request) {
             )
           ),
           conditionalPanel("input.inferenceTabsetPanel == \"Analysis\"",
-            analysis_ui_sidebar("analysis_computation"),
-            analysis_tree_lists_ui("analysis_tree_lists")
+            conditionalPanel("output.data_is_loaded",
+              analysis_ui_sidebar("analysis_computation"),
+              analysis_tree_lists_ui("analysis_tree_lists")
+            )
           )
         ),
         mainPanel(width = 10,

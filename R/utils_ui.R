@@ -59,7 +59,7 @@ generate_error <- function(msg, frame = NULL) {
   if (is.null(frame)) {
     showModal(modalDialog(fluidPage(h3(strong("Error!"), align = "center"),
                                     hr(),
-                                    paste0(msg))))
+                                    HTML(paste0(msg)))))
   } else {
     showModal(modalDialog(fluidPage(h3(strong("Error!"), align = "center"),
                                     hr(),

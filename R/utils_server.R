@@ -36,6 +36,10 @@ read_and_name_trees_cache <- function(cache,
                                       cache_code,
                                       names_to_do) {
   res <- cache_wrapper(cache, cache_id, cache_code)
+  if (is.character(res)) { # Error
+    cache[["cache"]][[cache_id]] <- NULL
+    return(res)
+  }
   res$names <- make_tree_names(res, names_to_do)
   res
 }
