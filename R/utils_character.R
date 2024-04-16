@@ -208,7 +208,9 @@ make_custom_matrix <- function(string, states_char) {
   string <- gsub(",", ";", string)
   splt <- stringr::str_split(string, ";")[[1]]
 
-  if (length(split) == 0) return(NULL)
+  if (length(split) == 0) {
+    return(NULL)
+  }
 
   mat <- 1 - diag(length(states_char))
   mat[mat == 1] <- "i"
@@ -227,14 +229,28 @@ make_custom_matrix <- function(string, states_char) {
       cost <- strmatch_with_cost[1, 4]
       idx0 <- which(states_char == state0)
       idx1 <- which(states_char == state1)
-      if (length(idx0) != 1 || length(idx1) != 1) return(NULL)
+      if (length(idx0) != 1 || length(idx1) != 1) {
+        # A state is in the custom rep that is not in the data, this is most
+        #   common when a polymorphism reduction is performed that removes
+        #   one or more states. It can also happen if the custom string has
+        #   more states than provided (which can just be ignored). In any case,
+        #   just ignore it.
+        next
+      }
       mat[idx0, idx1] <- cost
     } else if (all(!is.na(strmatch_wo_cost)) && x == strmatch_wo_cost[1, 1]) {
       state0 <- strmatch_wo_cost[1, 2]
       state1 <- strmatch_wo_cost[1, 3]
       idx0 <- which(states_char == state0)
       idx1 <- which(states_char == state1)
-      if (length(idx0) != 1 || length(idx1) != 1) return(NULL)
+      if (length(idx0) != 1 || length(idx1) != 1) {
+        # A state is in the custom rep that is not in the data, this is most
+        #   common when a polymorphism reduction is performed that removes
+        #   one or more states. It can also happen if the custom string has
+        #   more states than provided (which can just be ignored). In any case,
+        #   just ignore it.
+        next
+      }
       mat[idx0, idx1] <- "1"
     } else {
       return(NULL)
