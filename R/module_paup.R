@@ -124,6 +124,7 @@ paup_server <- function(id,
 
     observeEvent(input$paup_generate_nexus, {
       nexus_str <- generate_nexus_string()
+      if (is.null(nexus_str)) return() # Error condition, already handled
       if (substr(nexus_str[1], 1, 7) == "ERROR: ") {
         assertthat::assert_that(length(nexus_str) == 1)
         generate_error(substr(nexus_str, 8, nchar(nexus_str[1])))

@@ -65,7 +65,7 @@ generate_error <- function(msg, frame = NULL) {
                                     hr(),
                                     paste0(msg),
                                     hr(),
-                                    DT::renderDataTable({
+                                    DT::renderDT({
                                       DT::datatable(
                                         frame,
                                         editable = FALSE,
