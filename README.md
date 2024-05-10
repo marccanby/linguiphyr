@@ -76,7 +76,7 @@ Follow these steps:
 3. Wait for the "PAUP\* Output" text box to populate (note: this may take up to 30 seconds, even after the "Running....." message disappears).
 4. Click on the "Analysis" tab. Here, you can visualize the tree found by PAUP\*, annotate internal nodes with reconstructed states, see incompatible characters, and more. We recommend rooting the tree at "HI" ("Hittite"), one of the Anatolian languages, which is the branch believed to break off first.
 
-![Analysis page of LinguiphyR.\label{fig:example}](paper/figure.png)
+![Analysis page of LinguiphyR.\label{fig:example}](paper/figure3.png)
 
 ## How to Contribute
 
