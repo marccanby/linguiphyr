@@ -72,7 +72,19 @@ data_upload_ui <- function(id) {
                   fluidRow(column(6, fileInput(ns("data_input"),
                                                label = NULL,
                                                multiple = FALSE,
-                                               accept = NULL))),
+                                               accept = NULL)),
+                    conditionalPanel("!output.data_is_loaded",
+                      column(2,
+                        actionButton(ns("data_example"),
+                                     "Upload Example Data")
+                      )
+                    ),
+                    conditionalPanel("output.data_is_loaded",
+                      column(2, downloadButton(ns("data_download"),
+                                               "Download Data")
+                      )
+                    ),
+                  ),
                   HTML(paste0("After uploading the data, you can adjust",
                               " preprocessing options in the left sidebar."))
                 ),
@@ -178,9 +190,8 @@ data_upload_server <-  function(id, my_vals) {
 
     col_start <- 5
 
-    # Upload dataset
-    observeEvent(input$data_input, {
-      data <- read_and_validate_data(input$data_input$datapath)
+    read_dataset <- function(path) {
+      data <- read_and_validate_data(path)
 
       if (typeof(data) == "list") {
         if ("irreversible" %in% data[["chartype"]] ||
@@ -209,8 +220,30 @@ data_upload_server <-  function(id, my_vals) {
         my_vals$data_is_loaded <- FALSE
         generate_error(data)
       }
+    }
 
+    # Upload dataset
+    observeEvent(input$data_input, {
+      path <- input$data_input$datapath
+      read_dataset(path)
     })
+
+    # Example dataset
+    observeEvent(input$data_example, {
+      path <- system.file("data/ringe_screened_dataset.csv",
+                          package = "linguiphyr")
+      read_dataset(path)
+    })
+
+    # Download dataset
+    output$data_download <- downloadHandler(
+      filename = function() {
+        "data.csv"
+      },
+      content = function(file) {
+        utils::write.csv(my_vals[["original_data"]], file, row.names = FALSE)
+      }
+    )
 
     # Update characters that support a clade
     observe({

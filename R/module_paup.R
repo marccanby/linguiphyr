@@ -92,7 +92,6 @@ paup_server <- function(id,
       is_exhaustive <- input$paup_is_exhaustive
       is_weighted <- input$paup_is_weighted
       root <- data_upload_root_drop()
-      paup_is_exhaustive <- input$paup_is_exhaustive
 
       # Get character representations
       char_reps <- cache_wrapper(cache, "char_reps", {
