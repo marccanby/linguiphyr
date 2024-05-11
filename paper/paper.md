@@ -27,16 +27,16 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.--->
 # Introduction
 
 Phylogenetic methods have become commonplace in historical linguistics research. However, much of the work is highly 
-technical and not easily accessible to the typical classically-trained historical linguist; this is largely (and understandably) 
-due to the highly mathematical and computational nature of the work. This paper aims to bridge the gap 
+technical and not easily accessible to the typical classically-trained historical linguist. This paper aims to bridge the gap 
 between linguistic and statistical research by introducing LinguiPhyR, an R package that provides a graphical 
 user interface (GUI) to aid in the phylogenetic analysis of linguistic data. As such, very little computational 
-or statistical expertise is required by the user. A linguist may simply upload a dataset, select 
+background is required by the user. A linguist may simply upload a dataset, select 
 optimization criteria, and visualize the phylogenies found by the search algorithm. Alternatively, one may upload 
-trees of interest to be analyzed given the dataset. Several tools 
-for tree analysis are provided: a user may examine what characters are responsible for particular splits 
+trees of interest to be analyzed based on the dataset. Several tools 
+for tree analysis are provided: users may examine what characters are responsible for particular splits 
 in the tree, see the characters that are incompatible on the tree, annotate internal nodes of the tree with 
 reconstructed states, and even see a relative chronology of state changes. 
+<!---; this is largely (and understandably) due to the highly mathematical and computational nature of the work--->
 
 We note that, at present, our software focuses on parsimony-based tree estimation and analyses. We make this choice because such an 
 approach is easily interpretable: the best tree is simply the tree that minimizes the number of state changes. 
@@ -58,12 +58,11 @@ to entry, requires reasonable mathematical maturity to understand and operates l
 The primary goals of LinguiPhyR are to
 
 1. Make phylogenetics accessible to linguists by requiring *no* coding or writing of configuration files. While these are useful skills,
-we believe phylogenetics can only be useful to historical linguistics if considerable analysis is given to the
-results of phylogenetic algorithms by linguists. Giving linguists the option to spend their time analyzing trees in a GUI
-rather than writing complicated code will facilitate this work.
+giving linguists the option to spend their time analyzing trees in a GUI
+rather than writing code will facilitate analyses of phylogenetic inferences.
 
 3. Make it easy to find and visualize trees for a new linguistic dataset. One simply has to upload the dataset and select optimization criteria (or use the
-default settings). Trees are then displayed in the app and can be downloaded for inclusion in other work.
+default settings). Trees are then displayed in the app and can be downloaded (either as images or as Nexus files) for inclusion in other work.
 
 4. Provide a comprehensive set of (parsimony-based) analysis tools. These focus on the following questions: why are particular trees being suggested for
 the dataset? What evidence does a dataset contain for other trees proposed by the community? What is the effect of particular coding
@@ -88,7 +87,7 @@ R for linguistic phylogenetics is @IndoEuropeanphylogeneticswithR.
 
 The following sections describe each page of the app: Data Upload, Tree Search, and Analysis.
 Throughout the subsequent discussion, many terms familiar to historical linguists are used (e.g. *clade*, *cognate*, and *regular sound change*); 
-we suggest @ringeska for further reading. Similarly, we recommend @warnow2017computational for further discussion on language common in
+we suggest @ringeska for further reading. Similarly, we recommend @warnow2017computational for terms common in
 the phylogenetics literature, such as *character*, *polymorphism*, and *parsimony*.
 
 ## Data Upload
