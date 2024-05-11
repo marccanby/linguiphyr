@@ -40,8 +40,9 @@ Tree estimation is performed using PAUP\*, which must be installed separately:
      2. Move this file to a new directory (e.g. `~/Documents/paup/`) on your computer.
 
      3. Navigate to this directory, and run <code>chmod a+x paup</code> to enable executable permissions on the file.
+         - Note: You may also have to right click on the `paup` executable in Finder and select `Open` to avoid the warning about the software being from an unidentified developer when you later try to call it from the LinguiphyR app.
 
-     4. To make this binary available to R, run the following command in R:
+     5. To make this binary available to R, run the following command in R:
 
         ```
         Sys.setenv(PATH = paste("~/Documents/paup/:", Sys.getenv("PATH"), sep=""))
