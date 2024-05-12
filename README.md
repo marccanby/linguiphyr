@@ -28,6 +28,8 @@ remotes::install_github("marccanby/linguiphyr")
 
 The same command may be called to upgrade the package.
 
+- Note: If you are asked "Do you want to install from sources the package which needs compilation?", we recommend saying "no".
+
 **Step 2: Install PAUP\***
 
 Tree estimation is performed using PAUP\*, which must be installed separately: 
