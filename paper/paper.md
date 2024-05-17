@@ -65,7 +65,7 @@ rather than writing code will facilitate analyses of phylogenetic inferences.
 default settings). Trees are then displayed in the app and can be downloaded (either as images or as Nexus files) for inclusion in other work.
 
 4. Provide a comprehensive set of (parsimony-based) analysis tools. These focus on the following questions: why are particular trees being suggested for
-the dataset? What evidence does a dataset contain for other trees proposed by the community? What is the effect of particular coding
+the dataset? What evidence does a dataset contain for other trees of interest? What is the effect of particular coding
 decisions in the dataset on the understanding of a tree?
 <!---5. Provide a platform for phylogenetic visualization. Discussion with many linguists has pointed to the need for an interactive
 framework to demonstrate and analyze trees, often in presentation settings or tutorials.--->
@@ -206,7 +206,7 @@ sum of these support values across all edges, and minimum edge support is the mi
 
 3. **Character annotations:** The user may select any character and see the most parsimonious annotation(s) of that character's
 states across the tree (including reconstructed states at internal nodes). This is convenient for studying a character's behavior, and can help a linguist
-interpret the consequences of particular character codings on phylogeny estimation.
+interpret the consequences of particular character codings on phylogeny estimation. For example, when coding the absence of a feature, a linguist has two choices: either code all languages without the feature with the same state (e.g. $0$), or code them all with different states. The former choice would suggest the absence of feature as evidence of a clade among those languages without the feature, while the latter would suggest that absence of the feature is not evidence that the languages are related. By annotating the states of each choice on proposed trees, the linguist can see the most parsimonious evolution patterns for both codings.
 
 4. **Incompatible characters:** This reports the characters that are not compatible on a tree. This is useful
 for considering how plausible various trees are: if the set of characters that a tree is not compatible on seems unrealistic, 
