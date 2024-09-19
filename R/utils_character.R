@@ -216,8 +216,8 @@ make_custom_matrix <- function(string, states_char) {
   mat[mat == 1] <- "i"
 
   for (x in splt) {
-    regex_with_cost <- "([^>():])>([^>():])\\([c|w]:(\\d+)\\)"
-    regex_wo_cost <- "([^>():])>([^>():])"
+    regex_with_cost <- "([^>():]+)>([^>():]+)\\([c|w]:(\\d+)\\)"
+    regex_wo_cost <- "([^>():]+)>([^>():]+)"
 
     # May match both, in which case first should be used
     strmatch_with_cost <- stringr::str_match(x, regex_with_cost)
