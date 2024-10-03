@@ -125,8 +125,7 @@ Finally, we note that our coding scheme is applicable to phonological, morpholog
 Each character may be declared “standard”, “irreversible”, or “custom”. Standard characters permit any change of state 
 (e.g. from 0 to 1 or from 1 to 2) with uniform cost. This is generally appropriate for lexical characters where the states represent 
 cognate classes. Irreversible characters are binary characters that may transition from 0 to 1 but not from 1 to 0. This is appropriate 
-in the case of phonological mergers, which are generally considered irreverisble. Finally, custom characters allow the user to declare which state transitions are 
-allowed, and what the cost should be for each permitted transition. The exact way to specify this is described in the "Data Upload" page of the app.
+in the case of phonological mergers, which are generally considered irreverisble. Finally, custom characters allow the user to declare which state transitions are allowed and what the cost of each should be. <!---The exact way to specify this is described in the "Data Upload" page of the app.--->
 
 Finally, our data format supports *multi-state* and *polymorphic* characters. Multi-state characters can take more than 2 states. While it is common to convert multi-state characters into a set of independent binary traits, we recommend leaving such characters in their underlying multi-state form unless the estimation algorithm explicitly requires binary characters; for further discussion on these approaches, see @rexova2003cladistic, @tutorialNicholsWarnow, and @heggarty2021cognacy. Datasets may also contain polymorphic characters, which are those for which a language exhibits more than one state. For lexical data, this would mean that a language manifests two cognate classes for the same semantic slot [@canby2024]. Such examples are denoted by separating the states with a */* (e.g. *1/2*) in the dataset.
 
@@ -135,7 +134,7 @@ After uploading the data, the app presents some statistics:
 * **Parsimony Uninformative Characters:** The characters that are not *parsimony informative* are displayed. These characters
 will have no effect on parsimony-based tree estimation because they can be fit equally well to any tree (see @warnow2017computational for a discussion). This 
 is especially helpful to a linguist, who may not be thinking about the consequences of character codings to 
-the parsimony algorithm when coding individual characters. This thus allows a linguist to carefully consider coding choices.
+the parsimony algorithm when coding individual characters.
 
 * **Character-level Statistics:** Various information about each character is displayed, such as the number of
 languages having polymorphic states for that character and whether or not
