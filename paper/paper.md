@@ -47,13 +47,15 @@ Future work will include the incorporation of other search algorithms and analyt
 
 # Statement of need
 
-Given the recent explosion of new linguistic phylogenetic datasets [@heggartyetal; @Tresoldi2023; @herce2023short; @jager2018global], new tools for their analyses are called for. Many linguists
+Given the recent explosion of linguistic phylogenetic datasets [@heggartyetal; @Tresoldi2023; @herce2023short; @jager2018global], new tools for their analyses are called for. Many linguists
 want to perform parsimony analyses of their dataset, and our software makes it easy to do so with little effort.
 In this work,
-we provide an easy-to-use parsimony-based tool for phylogenetic analysis that emphasizes *interpretability*, allowing linguists to understand
+we provide an easy-to-use tool for phylogenetic analysis that emphasizes *interpretability*, allowing linguists to understand
 why trees are returned for a particular dataset *or* what evidence a new dataset has for existing trees suggested by the community.
-Currently, the go-to method for phylogenetic analysis is Bayesian inference, which, despite efforts to reduce barrier 
-to entry, requires reasonable mathematical maturity to understand and operates largely as a black-box. 
+Currently, our software only allows parsimony-based analyses, a decision made because the go-to methods for phylogenetic analysis (Bayesian inference) requires reasonable mathematical maturity to underestand, despite efforts to reduce barrier to entry. Nonetheless, future work will aim to bring other methods (such as distance-based, quartet-based, and Bayesian approaches) into the package. <!--- the go-to method for phylogenetic analysis is Bayesian inference, which, despite efforts to reduce barrier 
+to entry, requires reasonable mathematical maturity to understand. --->
+
+<!--- and operates largely as a black-box. --->
 
 The primary goals of LinguiPhyR are to
 
@@ -63,10 +65,10 @@ rather than writing code will facilitate analyses of phylogenetic inferences.
 
 !["Data Upload" page of LinguiPhyR.\label{fig:figure1}](figure1.png)
 
-3. Make it easy to find and visualize trees for a new linguistic dataset. One simply has to upload the dataset and select optimization criteria (or use the
+2. Make it easy to find and visualize trees for a new linguistic dataset. One simply has to upload the dataset and select optimization criteria (or use the
 default settings). Trees are then displayed in the app and can be downloaded (either as images or as Nexus files) for inclusion in other work.
 
-4. Provide a comprehensive set of (parsimony-based) analysis tools. These focus on the following questions: why are particular trees being suggested for
+3. Provide a comprehensive set of (parsimony-based) analysis tools. These focus on the following questions: why are particular trees being suggested for
 the dataset? What evidence does a dataset contain for other trees of interest? What is the effect of particular coding
 decisions in the dataset on the understanding of a tree?
 <!---5. Provide a platform for phylogenetic visualization. Discussion with many linguists has pointed to the need for an interactive
