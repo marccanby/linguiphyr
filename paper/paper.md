@@ -102,7 +102,7 @@ be uploaded as a CSV file. An example of the data format is shown below[^1]:
 | c26   | M3        |50|standard|1 | 2 | 2 | 3 | 2 | 2 | 2 | 2 | 4 |$\cdots$
 | c50 | bird |1|standard|1 | 2 | 3 | 4 | 5 | 6 | 6 | 7 | 8 |$\cdots$
 
-Table: Example dataset specification, excerpted from the screened Indo-European dataset of @ringe2002indo.
+Table: Example dataset specification, excerpted from the Indo-European dataset of @ringe2002indo.
 
 [^1]: We provide the screened version of the Indo-European dataset of @ringe2002indo in the correct format at the path
 `data/ringe_screened_dataset.csv` in the LinguiPhyR Github repository.
@@ -152,7 +152,9 @@ less parsimonious tree. This can be examined in the "Analysis" page of the appli
 
 An example usage of the "Data Upload" page is shown in \autoref{fig:figure1}; here one can see the screened dataset of @ringe2002indo uploaded.
 
-!["Data Upload" page of LinguiPhyR.\label{fig:figure1}](figure1.png)
+<div style="float:top; text-align:center;">
+    <img src="figure1.png" alt="Data Upload page of LinguiPhyR" style="width:80%;">
+</div>
 
 ## Tree Search
 
