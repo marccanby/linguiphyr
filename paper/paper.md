@@ -162,8 +162,6 @@ and other phylogenetic analyses. The user may specify various optimization crite
 writing configuration files by hand, which is a big barrier to entry for many linguists. Nonetheless, users may download these 
 configuration files from the app and modify them as needed.
 
-![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
-
 ## Analysis
 
 Finally, one may use the dataset to analyze trees. These trees can be either the result of a PAUP\* tree search, or 
@@ -179,20 +177,22 @@ for further detail). To calculate total edge support and minimum edge support, w
 or support, each edge, based on whether or not the collapse of that edge would increase the parsimony score. Total edge support is the 
 sum of these support values across all edges, and minimum edge support is the minimum of these values.
 
-3. **Character annotations:** The user may select any character and see the most parsimonious annotation(s) of that character's
+2. **Character annotations:** The user may select any character and see the most parsimonious annotation(s) of that character's
 states across the tree (including inferred states at internal nodes). This is convenient for studying a character's behavior, and can help a linguist
 interpret the consequences of particular character codings on phylogeny estimation.
 <!--- For example, when coding the absence of a feature, a linguist has two choices: either code all languages without the feature with the same state (e.g. $0$), or code them all with different states. The former choice would suggest the absence of feature as evidence of a clade among those languages without the feature, while the latter would suggest that absence of the feature is not evidence that the languages are related. By annotating the states of each choice on proposed trees, the linguist can see the most parsimonious evolution patterns for both codings.--->
 
-5. **Incompatible characters:** This reports the characters that are not compatible on a tree. This is useful
+![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
+
+3. **Incompatible characters:** This reports the characters that are not compatible on a tree. This is useful
 for considering how plausible various trees are: if the set of characters that a tree is not compatible on seems unrealistic, 
 a linguist may wish to discard the tree in favor of other options.
 
-6. **Enforcing characters:** This reports the characters that enforce, or support, each edge in the tree. A character is deemed to
+4. **Enforcing characters:** This reports the characters that enforce, or support, each edge in the tree. A character is deemed to
 support an edge if and only if the edge’s collapse increases the parsimony score for that character. This feautre allows one to analyze evidence for 
 and against various clades.
 
-7. **Relative chronology:** This reports a relative chronology of state changes *across* characters. This is calculated by first
+5. **Relative chronology:** This reports a relative chronology of state changes *across* characters. This is calculated by first
 determining the most parsimonious state transitions for each character, and then ordering these transitions based on
 the edges they occur on from the root of the tree to a specified clade. This type of relative chronology may seem unusual to the
 typical historical linguist, but its results can be illuminating.
