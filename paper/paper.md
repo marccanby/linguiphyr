@@ -94,7 +94,7 @@ the phylogenetics literature, such as *character*, *polymorphism*, and *parsimon
 
 The user first uploads a dataset of linguistic characters, which encode certain properties about languages that are likely
 to be relevant to the branching structure of the underlying tree. The characters should
-be specified in a spreadsheet and uploaded as a CSV file. An example of the data format is shown below[^1]:
+be uploaded as a CSV file. An example of the data format is shown below[^1]:
 
 | id   | feature | weight | chartype | HI | AR | GK | AL | TB | VE | AV | OC | LI | $\cdots$
 | ----------- | ----------- | ----------- | ----------- | ----------- |----------- |----------- |----------- |----------- |----------- |----------- |----------- |----------- |-----------
@@ -119,9 +119,8 @@ semantic slots (such as "bird" in the table above), and
 languages should share a state if their words for that meaning are cognate $-$ that is, the words are derived from a common ancestor via regular sound change.
 However, if a linguist can demonstrate that two languages share the same cognate due to borrowing or some other non-genetic source, then
 the languages should be given different states for that character. 
-Such cognate judgements are thus critically important to phylogenetic analysis; an abundance of phylogenetics literature discusses good methodology for doing designing characters. 
-[@ringe2002indo; @tutorialNicholsWarnow, @heggarty2021cognacy]. Classical historical linguistics references are also helpful [@ringeska, @campbell2013historical]. 
-Finally, we note that our coding scheme is applicable to phonological, morphological, and structural/typological characters, which are abundant in phylogenetic datasets.
+Such cognate judgements are thus critically important to phylogenetic analysis; an abundance of phylogenetics literature discusses good methodology for doing designing characters [@ringe2002indo, @tutorialNicholsWarnow, @heggarty2021cognacy]. Classical historical linguistics references are also helpful [@ringeska, @campbell2013historical]. 
+Finally, we note that our coding scheme is applicable to phonological, morphological, and structural/typological characters.
 
 Each character may be declared “standard”, “irreversible”, or “custom”. Standard characters permit any change of state 
 (e.g. from 0 to 1 or from 1 to 2) with uniform cost. This is generally appropriate for lexical characters where the states represent 
@@ -129,7 +128,7 @@ cognate classes. Irreversible characters are binary characters that may transiti
 in the case of phonological mergers, which are generally considered irreverisble. Finally, custom characters allow the user to declare which state transitions are 
 allowed, and what the cost should be for each permitted transition. The exact way to specify this is described in the "Data Upload" page of the app.
 
-Finally, our data format supports *multi-state* and *polymorphic* characters. Multi-state characters can take more than 2 states. While it is common to convert multi-state characters into a set of independent binary traits, we recommend leaving such characters in their underlying multi-state form unless the estimation algorithm explicitly requires binary characters; for further discussion on these approaches, see @rexova2003cladistic, @tutorialNicholsWarnow, @heggarty2021cognacy. Datasets may also contain polymorphic characters, which are those for which a language exhibits more than one state. For lexical data, this would mean that a language manifests two cognate classes for the same semantic slot [@canby2024]. Such examples are denoted by separating the states with a */* (e.g. *1/2*) in the dataset.
+Finally, our data format supports *multi-state* and *polymorphic* characters. Multi-state characters can take more than 2 states. While it is common to convert multi-state characters into a set of independent binary traits, we recommend leaving such characters in their underlying multi-state form unless the estimation algorithm explicitly requires binary characters; for further discussion on these approaches, see @rexova2003cladistic, @tutorialNicholsWarnow, and @heggarty2021cognacy. Datasets may also contain polymorphic characters, which are those for which a language exhibits more than one state. For lexical data, this would mean that a language manifests two cognate classes for the same semantic slot [@canby2024]. Such examples are denoted by separating the states with a */* (e.g. *1/2*) in the dataset.
 
 After uploading the data, the app presents some statistics:
 
@@ -158,7 +157,7 @@ An example usage of the "Data Upload" page is shown in \autoref{fig:figure1}; he
 
 ## Tree Search
 
-Then, the user may proceed to the second page of the app, which conducts a search for the optimal tree(s) given the 
+On the second page of the app, the user can conduct a search for the optimal tree(s) given the 
 dataset. We use PAUP\* [@swofford2002phylogenetic] to perform tree search, a well-established package in the biological community for running parsimony 
 and other phylogenetic analyses. The user may specify various optimization criteria in the app without
 having to write configuration files by hand, which is a big barrier to entry for many linguists. Nonetheless, users may download these 
@@ -184,7 +183,7 @@ or support, each edge, based on whether or not the collapse of that edge would i
 sum of these support values across all edges, and minimum edge support is the minimum of these values.
 
 3. **Character annotations:** The user may select any character and see the most parsimonious annotation(s) of that character's
-states across the tree (including reconstructed states at internal nodes). This is convenient for studying a character's behavior, and can help a linguist
+states across the tree (including inferred states at internal nodes). This is convenient for studying a character's behavior, and can help a linguist
 interpret the consequences of particular character codings on phylogeny estimation.
 <!--- For example, when coding the absence of a feature, a linguist has two choices: either code all languages without the feature with the same state (e.g. $0$), or code them all with different states. The former choice would suggest the absence of feature as evidence of a clade among those languages without the feature, while the latter would suggest that absence of the feature is not evidence that the languages are related. By annotating the states of each choice on proposed trees, the linguist can see the most parsimonious evolution patterns for both codings.--->
 
@@ -203,8 +202,6 @@ typical historical linguist, but its results can be illuminating.
 
 \autoref{fig:figure3} depicts an example tree analysis in LinguiPhyR, based on the screened dataset of @ringe2002indo.
 
-![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
-
 # Conclusions
 
 We present LinguiPhyR, a useful tool for analyzing phylogenetic datasets and trees without the need to code. Even for experienced 
@@ -214,6 +211,8 @@ parsimony-based interpretability
 by providing useful visualizations and tools to see the impact of certain coding decisions on tree estimation. Future work will include the incorporation
 of other inference methods (such as likelihood-based, distance-based, and quartet approaches), as well as more advanced analytical tools, such as bootstrap 
 analysis.
+
+![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
 
 <!---# Citations
 
