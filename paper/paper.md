@@ -57,7 +57,7 @@ to entry, requires reasonable mathematical maturity to understand and operates l
 
 The primary goals of LinguiPhyR are to
 
-1. Make phylogenetics accessible to linguists by requiring *no* coding or writing of configuration files. While these are useful skills,
+1. Make phylogenetics accessible by requiring *no* coding or writing of configuration files. While these are useful skills,
 giving linguists the option to spend their time analyzing trees in a GUI
 rather than writing code will facilitate analyses of phylogenetic inferences.
 
@@ -150,15 +150,15 @@ less parsimonious tree. This can be examined in the "Analysis" page.
 
 An example usage of the "Data Upload" page is shown in \autoref{fig:figure1}; it depicts the screened dataset of @ringe2002indo.
 
-!["Data Upload" page of LinguiPhyR.\label{fig:figure1}](figure1.png)
-
 ## Tree Search
 
-On the second page of the app (shown in \autoref{fig:figure2}), the user can conduct a search for the optimal tree(s) given the 
+On the second page of the app (shown in \autoref{fig:figure2}), the user can conduct a search for the optimal tree(s) for the 
 dataset. We use PAUP\* [@swofford2002phylogenetic] to perform tree search, a well-established package in the biological community for running parsimony 
 and other phylogenetic analyses. The user may specify various optimization criteria in the app without
-having to write configuration files by hand, which is a big barrier to entry for many linguists. Nonetheless, users may download these 
+writing configuration files by hand, which is a big barrier to entry for many linguists. Nonetheless, users may download these 
 configuration files from the app and modify them as needed.
+
+!["Data Upload" page of LinguiPhyR.\label{fig:figure1}](figure1.png)
 
 !["Tree Search" page of LinguiPhyR.\label{fig:figure2}](figure2.png)
 
