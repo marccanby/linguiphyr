@@ -96,7 +96,7 @@ the phylogenetics literature, such as *character*, *polymorphism*, and *parsimon
 
 ## Data Upload
 
-The user first uploads a dataset of linguistic characters, which encode certain properties about languages that are likely
+The first page of the app is shown in \autoref{fig:figure1}. The user first uploads a dataset of linguistic characters, which encode certain properties about languages that are likely
 to be relevant to the branching structure of the underlying tree. The characters should
 be uploaded as a CSV file. An example of the data format is shown below[^1]:
 
@@ -142,6 +142,8 @@ the parsimony algorithm when coding individual characters.
 languages having polymorphic states for that character and whether or not
 the character is parsimony-informative. The dataset may be sorted by these metrics.
 
+!["Tree Search" page of LinguiPhyR.\label{fig:figure2}](figure2.png)
+
 * **Clade Analysis:** The user may select a subset of languages and analyze what characters provide support for 
 such a clade (a clade is a subset of languages separated from all other languages by an edge in the tree).
 This is computed in the strictest sense: a character only supports a hypothetical clade if the languages
@@ -152,8 +154,6 @@ this condition. For example, if the dominant cognate class in a clade is lost by
 will still support the grouping if the removal of the edge separating the clade from all other languages would produce a 
 less parsimonious tree. This can be examined in the "Analysis" page.
 
-An example usage of the "Data Upload" page is shown in \autoref{fig:figure1}; it depicts the screened dataset of @ringe2002indo.
-
 ## Tree Search
 
 On the second page of the app (shown in \autoref{fig:figure2}), the user can conduct a search for the optimal tree(s) for the 
@@ -161,7 +161,6 @@ dataset. We use PAUP\* [@swofford2002phylogenetic] to perform tree search, a wel
 and other phylogenetic analyses. The user may specify various optimization criteria in the app without
 writing configuration files by hand, which is a big barrier to entry for many linguists. Nonetheless, users may download these 
 configuration files from the app and modify them as needed.
-!["Tree Search" page of LinguiPhyR.\label{fig:figure2}](figure2.png)
 
 ![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
 
