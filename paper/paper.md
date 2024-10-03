@@ -119,12 +119,9 @@ semantic slots (such as "bird" in the table above), and
 languages should share a state if their words for that meaning are cognate $-$ that is, the words are derived from a common ancestor via regular sound change.
 However, if a linguist can demonstrate that two languages share the same cognate due to borrowing or some other non-genetic source, then
 the languages should be given different states for that character. 
-
-Such cognate judgements are critically important to the results of phylogenetic estimation. A haphazard or automated
-data representation will not yield meaningful trees; hence, it is important to have well-trained linguists judge relevant material and select characters
-that actually represent potentially shared innovations. An abundance of phylogenetics literature discusses good methodology for doing this 
-[@ringe2002indo; @tutorialNicholsWarnow, @heggarty2021cognacy]; classical historical linguistics references are also helpful [@ringeska, @campbell2013historical]. 
-Further, our coding scheme is applicable to phonological, morphological, and structural/typological characters, which are abundant in phylogenetic datasets.
+Such cognate judgements are thus critically important to phylogenetic analysis; an abundance of phylogenetics literature discusses good methodology for doing designing characters. 
+[@ringe2002indo; @tutorialNicholsWarnow, @heggarty2021cognacy]. Classical historical linguistics references are also helpful [@ringeska, @campbell2013historical]. 
+Finally, we note that our coding scheme is applicable to phonological, morphological, and structural/typological characters, which are abundant in phylogenetic datasets.
 
 Each character may be declared “standard”, “irreversible”, or “custom”. Standard characters permit any change of state 
 (e.g. from 0 to 1 or from 1 to 2) with uniform cost. This is generally appropriate for lexical characters where the states represent 
@@ -132,19 +129,10 @@ cognate classes. Irreversible characters are binary characters that may transiti
 in the case of phonological mergers, which are generally considered irreverisble. Finally, custom characters allow the user to declare which state transitions are 
 allowed, and what the cost should be for each permitted transition. The exact way to specify this is described in the "Data Upload" page of the app.
 
-Our data format also supports *polymorphic* character states: these are instances where a language exhibits more than one state for a character.
-In the context of lexical data, this would mean that a language manifests two cognate classes for the same semantic slot.
+Finally, our data format supports *multi-state* and *polymorphic* characters. Multi-state characters can take more than 2 states. While it is common to convert multi-state characters into a set of independent binary traits, we recommend leaving such characters in their underlying multi-state form unless the estimation algorithm explicitly requires binary characters (for further discussion and studies on these approaches, see @rexova2003cladistic; @tutorialNicholsWarnow; @warnow2017computational). Our format also supports polymorphic characters, which are those for which a language exhibits more than one state. For lexical data, this would mean that a language manifests two cognate classes for the same semantic slot.
 Such examples are denoted by separating the states with a */* (e.g. *1/2*) in the dataset.
 
-Finally, we note that our software permits *multi-state* characters, not just binary traits. Binary traits are particularly common in 
-likelihood-based phylogenetic estimation, because most likelihood models require a pre-specified state space (e.g. $0$ and $1$). Non-parametric methods like parsimony
-do not have this assumption, and, in fact, it is not advisable to treat multi-state characters as a set of binary traits because 
-the estimation algorithms consider the traits independent (when they are not) [@rexova2003cladistic; @tutorialNicholsWarnow; @warnow2017computational]. For example, a lexical character denoting "bird" may have
-states $1$, $2$, and $3$, each representing a different cognate class observed in attested languages. Treating this as binary would create three traits,
-referring to whether or not the languages exhibit each of these cognate classes in the "bird" meaning. Unless there is a reason to make this binary conversion
-(e.g. because it is necessary to run likelihood algorithms), we suggest to leave the data in the underlying multi-state form.
-
-The app then presents some statistics about the dataset, and one can perform some simple analyses:
+After uploading the data, the app presents some statistics:
 
 * **Parsimony Uninformative Characters:** The characters that are not *parsimony informative* are displayed. These characters
 will have no effect on parsimony-based tree estimation because they can be fit equally well to any tree (see @warnow2017computational for a discussion). This 
