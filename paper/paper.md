@@ -117,17 +117,15 @@ Two languages should be given the same state for a character *if and only if* th
 could be from a common genetic source (and not, for example, from borrowing). For lexical data, characters typically represent particular 
 semantic slots (such as "bird" in the table above), and
 languages should share a state if their words for that meaning are cognate $-$ that is, the words are derived from a common ancestor via regular sound change.
-However, if a linguist can demonstrate that two languages share the same cognate due to borrowing or some other non-genetic source, then
+However, if two languages share the same cognate due to detected borrowing or some other known non-genetic source, then
 the languages should be given different states for that character. 
 Such cognate judgements are thus critically important to phylogenetic analysis; an abundance of phylogenetics literature discusses good methodology for doing designing characters [@ringe2002indo; @tutorialNicholsWarnow; @heggarty2021cognacy]. Classical historical linguistics references are also helpful [@ringeska; @campbell2013historical]. 
 Finally, we note that our coding scheme is applicable to phonological, morphological, and structural/typological characters.
 
 Each character may be declared “standard”, “irreversible”, or “custom”. Standard characters permit any change of state 
-(e.g. from 0 to 1 or from 1 to 2) with uniform cost. This is generally appropriate for lexical characters where the states represent 
-cognate classes. Irreversible characters are binary characters that may transition from 0 to 1 but not from 1 to 0. This is appropriate 
-in the case of phonological mergers, which are generally considered irreverisble. Finally, custom characters allow the user to declare which state transitions are allowed and what the cost of each should be. <!---The exact way to specify this is described in the "Data Upload" page of the app.--->
+(e.g. from 0 to 1 or from 1 to 2) with uniform cost, and is generally appropriate for lexical characters. Irreversible characters are binary characters that may transition from 0 to 1 but not from 1 to 0; this is useful for representing phonological mergers, which are generally considered irreverisble. Finally, custom characters allow the user to declare which state transitions are allowed and the cost of each. <!---The exact way to specify this is described in the "Data Upload" page of the app.--->
 
-Finally, our data format supports *multi-state* and *polymorphic* characters. Multi-state characters can take more than 2 states. While it is common to convert multi-state characters into a set of independent binary traits, we recommend leaving such characters in their underlying multi-state form unless the estimation algorithm explicitly requires binary characters; for further discussion on these approaches, see @rexova2003cladistic, @tutorialNicholsWarnow, and @heggarty2021cognacy. Datasets may also contain polymorphic characters, which are those for which a language exhibits more than one state. For lexical data, this would mean that a language manifests two cognate classes for the same semantic slot [@canby2024]. Such examples are denoted by separating the states with a */* (e.g. *1/2*) in the dataset.
+Finally, our data format supports *multi-state* and *polymorphic* characters. Multi-state characters can take more than 2 states. While it is common to convert multi-state characters into a set of independent binary traits, we recommend leaving such characters in their underlying multi-state form unless the estimation algorithm explicitly requires binary characters; for further discussion, see @rexova2003cladistic, @tutorialNicholsWarnow, and @heggarty2021cognacy. Datasets may also contain polymorphic characters, which are those for which a language exhibits more than one state. For lexical data, this would mean that a language manifests two cognate classes for the same semantic slot [@canby2024]. Such examples are denoted by separating the states with a */* (e.g. *1/2*) in the dataset.
 
 After uploading the data, the app presents some statistics:
 
@@ -148,7 +146,7 @@ in the clade all share the same state, and all other languages share a different
 [^2]: It is important to note that a clade *on a particular tree* may be supported by more than the characters that meet 
 this condition. For example, if the dominant cognate class in a clade is lost by just one language in the clade, the character 
 will still support the grouping if the removal of the edge separating the clade from all other languages would produce a 
-less parsimonious tree. This can be examined in the "Analysis" page of the application.
+less parsimonious tree. This can be examined in the "Analysis" page.
 
 An example usage of the "Data Upload" page is shown in \autoref{fig:figure1}; here one can see the screened dataset of @ringe2002indo uploaded.
 
@@ -201,7 +199,7 @@ determining the most parsimonious state transitions for each character, and then
 the edges they occur on from the root of the tree to a specified clade. This type of relative chronology may seem unusual to the
 typical historical linguist, but its results can be illuminating.
 
-\autoref{fig:figure3} depicts an example tree analysis in LinguiPhyR, based on the screened dataset of @ringe2002indo.
+\autoref{fig:figure3} depicts an example tree analysis in LinguiPhyR.
 
 # Conclusions
 
