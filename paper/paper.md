@@ -120,12 +120,12 @@ languages should share a state if their words for that meaning are cognate $-$ t
 However, if two languages share the same cognate due to detected borrowing or some other known non-genetic source, then
 the languages should be given different states for that character. 
 Such cognate judgements are thus critically important to phylogenetic analysis; an abundance of phylogenetics literature discusses good methodology for doing designing characters [@ringe2002indo; @tutorialNicholsWarnow; @heggarty2021cognacy]. Classical historical linguistics references are also helpful [@ringeska; @campbell2013historical]. 
-Finally, we note that our coding scheme is applicable to phonological, morphological, and structural/typological characters.
+Finally, our coding scheme is applicable to phonological, morphological, and structural/typological characters.
 
 Each character may be declared “standard”, “irreversible”, or “custom”. Standard characters permit any change of state 
 (e.g. from 0 to 1 or from 1 to 2) with uniform cost, and is generally appropriate for lexical characters. Irreversible characters are binary characters that may transition from 0 to 1 but not from 1 to 0; this is useful for representing phonological mergers, which are generally considered irreverisble. Finally, custom characters allow the user to declare which state transitions are allowed and the cost of each. <!---The exact way to specify this is described in the "Data Upload" page of the app.--->
 
-Finally, our data format supports *multi-state* and *polymorphic* characters. Multi-state characters can take more than 2 states. While it is common to convert multi-state characters into a set of independent binary traits, we recommend leaving such characters in their underlying multi-state form unless the estimation algorithm explicitly requires binary characters; for further discussion, see @rexova2003cladistic, @tutorialNicholsWarnow, and @heggarty2021cognacy. Datasets may also contain polymorphic characters, which are those for which a language exhibits more than one state. For lexical data, this would mean that a language manifests two cognate classes for the same semantic slot [@canby2024]. Such examples are denoted by separating the states with a */* (e.g. *1/2*) in the dataset.
+Finally, our data format supports *multi-state* and *polymorphic* characters. Multi-state characters can take more than 2 states. While it is common to convert multi-state characters into a set of independent binary traits, we recommend leaving such characters in their underlying multi-state form unless the estimation algorithm explicitly requires binary characters; for further discussion, see @rexova2003cladistic, @tutorialNicholsWarnow, and @heggarty2021cognacy. Datasets may also contain polymorphic characters, which are those for which a language exhibits more than one state; for example, a language may manifest two cognate classes for the same semantic slot [@canby2024]. Such examples are denoted by separating the states with a */* (e.g. *1/2*).
 
 After uploading the data, the app presents some statistics:
 
@@ -148,19 +148,17 @@ this condition. For example, if the dominant cognate class in a clade is lost by
 will still support the grouping if the removal of the edge separating the clade from all other languages would produce a 
 less parsimonious tree. This can be examined in the "Analysis" page.
 
-An example usage of the "Data Upload" page is shown in \autoref{fig:figure1}; here one can see the screened dataset of @ringe2002indo uploaded.
+An example usage of the "Data Upload" page is shown in \autoref{fig:figure1}; it depicts the screened dataset of @ringe2002indo.
 
 !["Data Upload" page of LinguiPhyR.\label{fig:figure1}](figure1.png)
 
 ## Tree Search
 
-On the second page of the app, the user can conduct a search for the optimal tree(s) given the 
+On the second page of the app (shown in \autoref{fig:figure2}), the user can conduct a search for the optimal tree(s) given the 
 dataset. We use PAUP\* [@swofford2002phylogenetic] to perform tree search, a well-established package in the biological community for running parsimony 
 and other phylogenetic analyses. The user may specify various optimization criteria in the app without
 having to write configuration files by hand, which is a big barrier to entry for many linguists. Nonetheless, users may download these 
 configuration files from the app and modify them as needed.
-
-\autoref{fig:figure2} demonstrates tree search using PAUP\*.
 
 !["Tree Search" page of LinguiPhyR.\label{fig:figure2}](figure2.png)
 
