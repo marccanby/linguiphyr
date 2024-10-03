@@ -119,7 +119,7 @@ semantic slots (such as "bird" in the table above), and
 languages should share a state if their words for that meaning are cognate $-$ that is, the words are derived from a common ancestor via regular sound change.
 However, if a linguist can demonstrate that two languages share the same cognate due to borrowing or some other non-genetic source, then
 the languages should be given different states for that character. 
-Such cognate judgements are thus critically important to phylogenetic analysis; an abundance of phylogenetics literature discusses good methodology for doing designing characters [@ringe2002indo, @tutorialNicholsWarnow, @heggarty2021cognacy]. Classical historical linguistics references are also helpful [@ringeska, @campbell2013historical]. 
+Such cognate judgements are thus critically important to phylogenetic analysis; an abundance of phylogenetics literature discusses good methodology for doing designing characters [@ringe2002indo; @tutorialNicholsWarnow; @heggarty2021cognacy]. Classical historical linguistics references are also helpful [@ringeska; @campbell2013historical]. 
 Finally, we note that our coding scheme is applicable to phonological, morphological, and structural/typological characters.
 
 Each character may be declared “standard”, “irreversible”, or “custom”. Standard characters permit any change of state 
