@@ -61,6 +61,8 @@ The primary goals of LinguiPhyR are to
 giving linguists the option to spend their time analyzing trees in a GUI
 rather than writing code will facilitate analyses of phylogenetic inferences.
 
+!["Data Upload" page of LinguiPhyR.\label{fig:figure1}](figure1.png)
+
 3. Make it easy to find and visualize trees for a new linguistic dataset. One simply has to upload the dataset and select optimization criteria (or use the
 default settings). Trees are then displayed in the app and can be downloaded (either as images or as Nexus files) for inclusion in other work.
 
@@ -157,9 +159,6 @@ dataset. We use PAUP\* [@swofford2002phylogenetic] to perform tree search, a wel
 and other phylogenetic analyses. The user may specify various optimization criteria in the app without
 writing configuration files by hand, which is a big barrier to entry for many linguists. Nonetheless, users may download these 
 configuration files from the app and modify them as needed.
-
-!["Data Upload" page of LinguiPhyR.\label{fig:figure1}](figure1.png)
-
 !["Tree Search" page of LinguiPhyR.\label{fig:figure2}](figure2.png)
 
 ![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
