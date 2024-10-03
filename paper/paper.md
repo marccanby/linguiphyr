@@ -138,7 +138,7 @@ the parsimony algorithm when coding individual characters.
 
 * **Character-level Statistics:** Various information about each character is displayed, such as the number of
 languages having polymorphic states for that character and whether or not
-the character is parsimony-informative (among others). The dataset may be sorted by these metrics.
+the character is parsimony-informative. The dataset may be sorted by these metrics.
 
 * **Clade Analysis:** The user may select a subset of languages and analyze what characters provide support for 
 such a clade (a clade is a subset of languages separated from all other languages by an edge in the tree).
@@ -165,6 +165,8 @@ configuration files from the app and modify them as needed.
 \autoref{fig:figure2} demonstrates tree search using PAUP\*.
 
 !["Tree Search" page of LinguiPhyR.\label{fig:figure2}](figure2.png)
+
+![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
 
 ## Analysis
 
@@ -210,8 +212,6 @@ parsimony-based interpretability
 by providing useful visualizations and tools to see the impact of certain coding decisions on tree estimation. Future work will include the incorporation
 of other inference methods (such as likelihood-based, distance-based, and quartet approaches), as well as more advanced analytical tools, such as bootstrap 
 analysis.
-
-![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
 
 <!---# Citations
 
