@@ -188,11 +188,11 @@ interpret the consequences of particular character codings on phylogeny estimati
 for considering the plausiblity of various trees: if the set of incompatible characters seems unrealistic, 
 a linguist may wish to discard the tree in favor of other options.
 
-4. **Enforcing characters:** This reports the characters that enforce, or support, each edge in the tree. A character is deemed to
-support an edge if and only if the edge’s collapse increases the parsimony score. One can thus analyze evidence for 
+4. **Enforcing characters:** This reports the characters that enforce, or support, each edge. A character is deemed to
+support an edge if and only if the edge’s collapse increases the tree's parsimony score. One can thus analyze evidence for 
 and against various clades.
 
-5. **Relative chronology:** This reports a relative chronology of state changes *across* characters. This is calculated by first
+5. **Relative chronology:** This displays a relative chronology of state changes *across* characters. This is calculated by first
 determining the most parsimonious state transitions for each character, and then ordering these transitions based on
 the edges they occur on from the root of the tree to a specified clade. This type of relative chronology may seem unusual to the
 typical historical linguist, but its results can be illuminating.
@@ -201,7 +201,7 @@ typical historical linguist, but its results can be illuminating.
 
 We present LinguiPhyR, a tool for analyzing phylogenetic datasets and trees via a graphical user interface. Even for experienced 
 programmers, LinguiPhyR can quickly enable analysis on a new linguistic dataset or provide a starting place
-for finding new trees. In our app, we especially emphasize 
+for finding new trees. We especially emphasize 
 (parsimony-based) interpretability
 by providing visualizations and tools to see the impact of certain coding decisions on tree estimation. Future work will incorporate other inference and analytical methods, such as likelihood-based or quartet approaches.
 
