@@ -191,9 +191,7 @@ a linguist may wish to discard the tree in favor of other options.
 support an edge if and only if the edge’s collapse increases the tree's parsimony score. One can thus analyze evidence for 
 and against various clades.
 
-5. **Relative chronology:** This displays a relative chronology of state changes *across* characters. This is calculated by first
-determining the most parsimonious state transitions for each character, and then ordering these transitions based on
-the edges they occur on from the root of the tree to a specified clade. This type of relative chronology may seem unusual to the
+5. **Relative chronology:** This displays a relative chronology of state changes *across* characters, based on the ordering of the most parsimonious state transitions for each character on the edges from the root of the tree to a specified clade. This type of relative chronology may seem unusual to the
 typical historical linguist, but its results can be illuminating.
 
 # Conclusions
