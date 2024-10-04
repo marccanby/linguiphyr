@@ -149,7 +149,7 @@ such a clade (a clade is a subset of languages separated from all other language
 This is computed in the strictest sense: a character only supports a hypothetical clade if the languages
 in the clade all share the same state, and all other languages share a different state.[^2]
 
-[^2]: It is important to note that a clade *on a particular tree* may be supported by more than the characters that meet 
+[^2]: Note that a clade *on a particular tree* may be supported by more than the characters that meet 
 this condition. For example, if the dominant cognate class in a clade is lost by just one language in the clade, the character 
 will still support the grouping if the removal of the edge separating the clade from all other languages would produce a 
 less parsimonious tree. This can be examined in the "Analysis" page.
