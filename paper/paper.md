@@ -180,8 +180,7 @@ sum of these support values across all edges, and minimum edge support is the mi
 ![Analysis page of LinguiPhyR.\label{fig:figure3}](figure3.png)
 
 2. **Character annotations:** The most parsimonious annotation(s) of a character's
-states are displayed on the tree (including inferred states at internal nodes). This is convenient for studying a character's behavior, and can help a linguist
-interpret the consequences of particular character codings on phylogeny estimation.
+states are displayed on the tree (including inferred states at internal nodes). This is convenient for studying a character's behavior and interpreting the consequences of particular character codings on phylogeny estimation.
 <!--- For example, when coding the absence of a feature, a linguist has two choices: either code all languages without the feature with the same state (e.g. $0$), or code them all with different states. The former choice would suggest the absence of feature as evidence of a clade among those languages without the feature, while the latter would suggest that absence of the feature is not evidence that the languages are related. By annotating the states of each choice on proposed trees, the linguist can see the most parsimonious evolution patterns for both codings.--->
 
 3. **Incompatible characters:** The characters not compatible on the tree are displayed. This is useful
