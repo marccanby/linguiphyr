@@ -167,7 +167,7 @@ configuration files from the app and modify them as needed.
 Finally, one may use the dataset to analyze trees, depicted in \autoref{fig:figure3}. These trees can be either the result of a PAUP\* tree search, or 
 specific trees may be uploaded by the user. This latter option is especially helpful for determining the support that a
 dataset exhibits for various trees accepted by the community. Strict and majority consensus trees for the trees returned by PAUP\*
-are displayed as well. The following analyses may be performed:
+are displayed as well. The following analyses may be performed on each tree:
 
 1. **Tree Score:** Each tree is scored using various metrics, including *parsimony*, *compatibility*, *total edge support*, and
 *minimum edge support*[^3]. Hence, the trees can be ranked according to these options.
@@ -184,8 +184,8 @@ states across the tree (including inferred states at internal nodes). This is co
 interpret the consequences of particular character codings on phylogeny estimation.
 <!--- For example, when coding the absence of a feature, a linguist has two choices: either code all languages without the feature with the same state (e.g. $0$), or code them all with different states. The former choice would suggest the absence of feature as evidence of a clade among those languages without the feature, while the latter would suggest that absence of the feature is not evidence that the languages are related. By annotating the states of each choice on proposed trees, the linguist can see the most parsimonious evolution patterns for both codings.--->
 
-3. **Incompatible characters:** This reports the characters that are not compatible on a tree. This is useful
-for considering how plausible various trees are: if the set of characters that a tree is not compatible on seems unrealistic, 
+3. **Incompatible characters:** The characters not compatible on the tree are displayed. This is useful
+for considering how plausible various trees are: if the set of incompatible characters on a tree seems unrealistic, 
 a linguist may wish to discard the tree in favor of other options.
 
 4. **Enforcing characters:** This reports the characters that enforce, or support, each edge in the tree. A character is deemed to
