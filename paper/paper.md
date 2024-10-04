@@ -199,10 +199,11 @@ typical historical linguist, but its results can be illuminating.
 # Conclusions
 
 We present LinguiPhyR, a tool for analyzing phylogenetic datasets and trees via a graphical user interface. Even for experienced 
-programmers, LinguiPhyR can quickly enable analysis on a new linguistic dataset or provide a starting place
-for finding new trees. We especially emphasize 
+programmers, LinguiPhyR can quickly enable analysis on a new linguistic dataset. <!--- or provide a starting place
+for finding new trees. --->
+We especially emphasize 
 (parsimony-based) interpretability
-by providing visualizations and tools to see the impact of certain coding decisions on tree estimation. Future work will incorporate other inference and analytical methods, such as likelihood-based or quartet approaches.
+by providing visualizations and tools to see the impact of certain coding decisions on tree estimation. Future work will incorporate other methods, such as likelihood-based or quartet approaches.
 
 <!---# Citations
 
