@@ -164,10 +164,10 @@ configuration files from the app and modify them as needed.
 
 ## Analysis
 
-Finally, one may use the dataset to analyze trees. These trees can be either the result of a PAUP\* tree search, or 
-specific trees of interest uploaded by the user. This latter option is especially helpful for determining the support that a
+Finally, one may use the dataset to analyze trees, depicted in \autoref{fig:figure3}. These trees can be either the result of a PAUP\* tree search, or 
+specific trees may be uploaded by the user. This latter option is especially helpful for determining the support that a
 dataset exhibits for various trees accepted by the community. Strict and majority consensus trees for the trees returned by PAUP\*
-are displayed as well. The primary analyses that can be performed on a tree are the following:
+are displayed as well. The following analyses may be performed:
 
 1. **Tree Score:** Each tree is scored using various metrics, including *parsimony*, *compatibility*, *total edge support*, and
 *minimum edge support*[^3]. Hence, the trees can be ranked according to these options.
@@ -196,8 +196,6 @@ and against various clades.
 determining the most parsimonious state transitions for each character, and then ordering these transitions based on
 the edges they occur on from the root of the tree to a specified clade. This type of relative chronology may seem unusual to the
 typical historical linguist, but its results can be illuminating.
-
-\autoref{fig:figure3} depicts an example tree analysis in LinguiPhyR.
 
 # Conclusions
 
