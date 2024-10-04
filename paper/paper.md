@@ -185,11 +185,11 @@ interpret the consequences of particular character codings on phylogeny estimati
 <!--- For example, when coding the absence of a feature, a linguist has two choices: either code all languages without the feature with the same state (e.g. $0$), or code them all with different states. The former choice would suggest the absence of feature as evidence of a clade among those languages without the feature, while the latter would suggest that absence of the feature is not evidence that the languages are related. By annotating the states of each choice on proposed trees, the linguist can see the most parsimonious evolution patterns for both codings.--->
 
 3. **Incompatible characters:** The characters not compatible on the tree are displayed. This is useful
-for considering how plausible various trees are: if the set of incompatible characters on a tree seems unrealistic, 
+for considering the plausiblity of various trees: if the set of incompatible characters seems unrealistic, 
 a linguist may wish to discard the tree in favor of other options.
 
 4. **Enforcing characters:** This reports the characters that enforce, or support, each edge in the tree. A character is deemed to
-support an edge if and only if the edge’s collapse increases the parsimony score for that character. This feautre allows one to analyze evidence for 
+support an edge if and only if the edge’s collapse increases the parsimony score. One can thus analyze evidence for 
 and against various clades.
 
 5. **Relative chronology:** This reports a relative chronology of state changes *across* characters. This is calculated by first
