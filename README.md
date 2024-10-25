@@ -1,6 +1,7 @@
 # LinguiphyR
 
 <!-- badges: start -->
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.06201/status.svg)](https://doi.org/10.21105/joss.06201)
   [![R-CMD-check](https://github.com/marccanby/linguiphyr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/marccanby/linguiphyr/actions/workflows/R-CMD-check.yaml)
   <!-- badges: end -->
 
