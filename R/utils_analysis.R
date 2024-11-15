@@ -214,17 +214,23 @@ annotate_tree <- function(tree, char_rep, parsimony_rep, edge_orig) {
 #'   edge using parent and child ids from edge table
 join_enf_chars_with_edge_table <- function(enforcing_chars, edge) {
   .data <- rlang::.data
-  cnts <- dplyr::count(enforcing_chars, .data$edge_id)
-  sms <- as.data.frame(enforcing_chars %>%
-                         dplyr::group_by(.data$edge_id) %>%
-                         dplyr::summarize(sum = sum(.data$weight)))
+  if (nrow(enforcing_chars) > 0) {
+    cnts <- dplyr::count(enforcing_chars, .data$edge_id)
+
+    sms <- as.data.frame(enforcing_chars %>%
+                           dplyr::group_by(.data$edge_id) %>%
+                           dplyr::summarize(sum = sum(.data$weight)))
+  } else {
+    cnts <- data.frame(edge_id = character(0), n = integer(0))
+    sms <- data.frame(edge_id = character(0), sum = integer(0))
+  }
   edge_nums <- unique(edge$edge_num)
   edge_nums <- as.numeric(edge_nums[edge_nums != " "])
   missing_ids <- edge_nums[!(edge_nums %in% cnts$edge_id)]
 
   if (length(missing_ids) > 0) {
-    cnts <- rbind(cnts, data.frame(edge_id = missing_ids, n = 0))
-    sms <- rbind(sms, data.frame(edge_id = missing_ids, sum = 0))
+    cnts <- rbind(cnts, data.frame(edge_id = as.character(missing_ids), n = 0))
+    sms <- rbind(sms, data.frame(edge_id = as.character(missing_ids), sum = 0))
   }
 
   joined <- dplyr::left_join(edge, cnts, by = c("edge_num" = "edge_id"))
