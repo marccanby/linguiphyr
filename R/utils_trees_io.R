@@ -240,6 +240,7 @@ read_and_name_trees_paup <- function(char_reps,
 #' @param char_reps Character representations
 #' @param leafset Leafs to include
 #' @param is_weighted Whether or not to use weighted parsimony for sorting
+#' @param insert_root Root leaf to insert
 #' @param do_unroot Whether or not to unroot trees
 #'
 #' @return List of trees along with their names to display
