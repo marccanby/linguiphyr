@@ -240,6 +240,7 @@ read_and_name_trees_paup <- function(char_reps,
 #' @param char_reps Character representations
 #' @param leafset Leafs to include
 #' @param is_weighted Whether or not to use weighted parsimony for sorting
+#' @param insert_root Root leaf to insert
 #' @param do_unroot Whether or not to unroot trees
 #'
 #' @return List of trees along with their names to display
@@ -247,6 +248,7 @@ read_and_name_trees_file <- function(file,
                                      char_reps,
                                      leafset,
                                      is_weighted,
+                                     insert_root,
                                      do_unroot = TRUE) {
   trees <- tryCatch({
     ape::read.nexus(file, tree.names = NULL, force.multi = TRUE)
@@ -260,6 +262,7 @@ read_and_name_trees_file <- function(file,
 
   nms <- names(trees)
   error <- c()
+  newtrees <- list()
   for (i in seq_along(nms)) {
     tree <- trees[[i]]
     if (substr(nms[i], 1, 1) == "'" &&
@@ -269,20 +272,35 @@ read_and_name_trees_file <- function(file,
     tips <- tree$tip.label
     if (length(tips) != length(leafset) ||
           !all(tips[order(tips)] == leafset[order(leafset)])) {
-      tips <- tips[order(tips)]
-      leafset <- leafset[order(leafset)]
-      error <- c(error,
-                 paste0(nms[i],
-                        " does not have the same leafset as  the data you",
-                        " have uploaded.<br>Leafset of this tree: ",
-                        paste0(tips, collapse = ", "), "<br>Leafset of your ",
-                        "dataset: ",
-                        paste0(leafset, collapse = ", ")))
+
+      # If we're just off by one and it's the root, we can add it
+      ol <- leafset[order(leafset)]
+      if (!is.null(insert_root) && ape::is.rooted(tree) &&
+            length(tips) == length(leafset) - 1 &&
+            all(c(insert_root, tips)[order(c(insert_root, tips))] == ol)) {
+        tree <- TreeTools::AddTip(tree, where = 0, label = insert_root)
+      } else { # Otherwise we have to throw error
+        tips <- tips[order(tips)]
+        leafset <- leafset[order(leafset)]
+        error <- c(error,
+                   paste0(nms[i],
+                          " does not have the same leafset as  the data you",
+                          " have uploaded.<br><b>Leafset of this tree:</b> ",
+                          paste0(tips, collapse = ", "), "<br><b>Leafset of ",
+                          "your dataset:</b> ",
+                          paste0(leafset, collapse = ", ")))
+      }
     }
+    newtrees[[i]] <- tree
   }
+  trees <- newtrees
   if (!is.null(error)) return(paste0(error, collapse = "<br><br>"))
 
-  if (do_unroot) trees <- ape::unroot(trees)
+  if (do_unroot) {
+    trees <- ape::unroot.multiPhylo(trees)
+    trees <- ape::unique.multiPhylo(trees)
+  }
+
   if (is_weighted) sort_by <- "wmp"
   else sort_by <- "mp"
   res <- sort_and_name_trees(trees, char_reps, names = nms, sort_by = sort_by)

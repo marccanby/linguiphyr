@@ -9,6 +9,7 @@ read_and_name_trees_file(
   char_reps,
   leafset,
   is_weighted,
+  insert_root,
   do_unroot = TRUE
 )
 }
@@ -20,6 +21,8 @@ read_and_name_trees_file(
 \item{leafset}{Leafs to include}
 
 \item{is_weighted}{Whether or not to use weighted parsimony for sorting}
+
+\item{insert_root}{Root leaf to insert}
 
 \item{do_unroot}{Whether or not to unroot trees}
 }

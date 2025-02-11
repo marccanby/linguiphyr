@@ -69,11 +69,13 @@ analysis_tree_lists_server <- function(id,
         assertthat::assert_that(inherits(char_reps, "list"))
       }
 
+      insert_root <- data_upload_root_drop()
       code <- {
         read_and_name_trees_file(input$analysis_input$datapath,
                                  cache[["cache"]][["char_reps"]],
                                  leafset = leafset,
                                  is_weighted = paup_is_weighted(),
+                                 insert_root = insert_root,
                                  do_unroot = TRUE)
       }
       trees <- read_and_name_trees_cache(cache,
@@ -99,12 +101,14 @@ analysis_tree_lists_server <- function(id,
 
       isolate({
         leafset <- names(my_vals[["data"]])[col_start:ncol(my_vals[["data"]])]
+        insert_root <- data_upload_root_drop()
 
         code <- {
           read_and_name_trees_file(input$analysis_input$datapath,
                                    cache[["cache"]][["char_reps"]],
                                    leafset = leafset,
                                    is_weighted = paup_is_weighted(),
+                                   insert_root = insert_root,
                                    do_unroot = TRUE)
         }
         trees <- read_and_name_trees_cache(cache,
